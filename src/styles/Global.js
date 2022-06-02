@@ -16,9 +16,12 @@ export const GlobalStyle = createGlobalStyle`
 
 body{
     font-family: 'League Spartan', sans-serif;
+    max-width:1440px;
+    margin-inline:auto;
 }
-
-
-
-
 `;
+
+/*
+@media (min-width: 768px)
+@media (min-width: 1280px)
+*/

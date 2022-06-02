@@ -19,12 +19,8 @@ export const HeadingXL = styled.span`
 
 export const HeadingL = styled.h2`
     font-weight: var(--fontWeight-700);
-    /* font-size: clamp(3rem, 1.9rem + 4.5vw, 6rem); */ //font grows between mobile view and desktop view
-    font-size: clamp(
-        3rem,
-        0.1rem + 12.2vw,
-        6rem
-    ); // font grows between mobile and tablet
+    font-size: clamp(3rem, 0.1rem + 12vw, 6rem);
+    // font grows between mobile and tablet
     letter-spacing: -1.2px;
     line-height: 48px;
     color: var(--white);
@@ -60,4 +56,14 @@ export const Paragraph = styled.p`
     font-size: 1.125rem;
     line-height: 24px;
     color: var(--darkGrey);
+`;
+
+export const ButtonTemplate = styled.button`
+    background-color: var(--veryDarkBlue);
+    color: var(--white);
+    font-weight: var(--fontWeight-700);
+    font-size: 1.125rem;
+    line-height: 1.5625rem;
+    border: none;
+    cursor: pointer;
 `;

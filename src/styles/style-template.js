@@ -8,7 +8,7 @@ export const HeadingXL = styled.span`
         font-weight: var(--fontWeight-700);
         font-size: clamp(7.5rem, -1.8rem + 19.3vw, 15.625rem);
         line-height: 200px;
-        letter-spacing: -3px;
+        letter-spacing: 10px;
         color: var(--veryLightGrey);
     }
 

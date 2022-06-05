@@ -12,6 +12,8 @@ export const GlobalStyle = createGlobalStyle`
 --veryLightGrey:hsl(230,21%,95%);
 --red:hsl(0,68%,61%);
 --white:hsl(0,0%,100%);
+
+--mainPaddingMobile:32px
 }
 
 body{
@@ -22,6 +24,7 @@ body{
 `;
 
 /*
-@media (min-width: 768px)
-@media (min-width: 1280px)
+@media (min-width: 48rem)
+@media(min-width: 64rem)
+
 */

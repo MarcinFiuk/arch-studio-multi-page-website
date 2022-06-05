@@ -13,8 +13,8 @@ import {
 
 function Hero() {
     const [actualElement, setActualElement] = useState(0);
-    const mobile = useMatchMedia('(max-width: 520px)');
-    const desktop = useMatchMedia('(min-width: 1024px)');
+    const mobile = useMatchMedia('(max-width: 48rem)');
+    const desktop = useMatchMedia('(min-width: 64rem)');
 
     const changeSlide = () => {
         setActualElement((prev) => {
@@ -92,14 +92,12 @@ function Hero() {
     );
 }
 
-const parentPaddingToRemove = '32px';
-
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     position: relative;
-    width: calc(100% + 2 * parentPaddingToRemove);
-    margin-inline: -${parentPaddingToRemove};
+    width: calc(100% + 2 * var(--mainPaddingMobile));
+    margin-inline: calc(-1 * var(--mainPaddingMobile));
 
-    @media (min-width: 768px) {
+    @media (min-width: 48rem) {
         margin-inline: 0;
         width: 100%;
     }
@@ -112,7 +110,7 @@ const ContentWrapper = styled.div`
 `;
 
 const IndividualElement = styled.div`
-    flex-shrink: 0;
+    flex: 0 0 100%;
     position: relative;
     width: 100%;
     height: 560px;
@@ -125,7 +123,7 @@ const IndividualElement = styled.div`
         height: 100%;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 48rem) {
         height: 720px;
     }
 `;
@@ -166,7 +164,7 @@ const Info = styled.div`
         }
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 48rem) {
         margin-inline: 58px;
 
         button {
@@ -174,7 +172,7 @@ const Info = styled.div`
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         width: 50%;
         margin-inline: 190px;
 
@@ -190,7 +188,7 @@ const ButtonsWrapper = styled.div`
     button {
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 64rem) {
         display: block;
         position: absolute;
         bottom: 0;

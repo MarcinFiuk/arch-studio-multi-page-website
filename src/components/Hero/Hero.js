@@ -1,34 +1,73 @@
 import styled from 'styled-components';
-
 import { useState } from 'react';
+
+import useInterval from '../../hooks/useInterval';
+import useMatchMedia from '../../hooks/useMatchMedia';
 import { data } from './hero-data';
+import IconArrow from './../icons/IconArrow';
 import {
     ButtonTemplate,
     HeadingL,
     Paragraph,
 } from './../../styles/style-template';
-import IconArrow from './../icons/IconArrow';
 
 function Hero() {
     const [actualElement, setActualElement] = useState(0);
-    const { title, description, photo } = data[actualElement];
+    const mobile = useMatchMedia('(max-width: 520px)');
+    const desktop = useMatchMedia('(min-width: 1024px)');
 
-    const photoPath = `/assets/home/mobile/image-hero-${photo}.jpg`;
+    const changeSlide = () => {
+        setActualElement((prev) => {
+            if (prev === 3) {
+                return 0;
+            }
+            return prev + 1;
+        });
+    };
+    useInterval(changeSlide, 4000, actualElement);
+    /* actualElement in useInterval reset the interval when slide is change manually*/
 
-    const buttons = data.map((element, index) => {
+    const movePictureHandler = (index) => {
+        setActualElement(index);
+    };
+
+    const buttons = data.map((_, index) => {
+        const photoNr = index + 1;
+        const paddedPhotoNr = photoNr.toString().padStart(2, 0);
+
         return (
             <NavigationButtons
                 data-id={index}
-                key={element.id}
+                key={index}
                 active={actualElement === index}
+                onClick={() => movePictureHandler(index)}
             >
-                {element.id}
+                {paddedPhotoNr}
             </NavigationButtons>
         );
     });
-    return (
-        <Wrapper>
-            <ContentWrapper>
+    const findPhotoSize = () => {
+        let photoSize;
+        if (mobile && !desktop) {
+            photoSize = 'mobile';
+        }
+        if (!mobile && !desktop) {
+            photoSize = 'tablet';
+        }
+        if (!mobile && desktop) {
+            photoSize = 'desktop';
+        }
+        return photoSize;
+    };
+
+    const slides = data.map((element) => {
+        const { id, title, description, photo } = element;
+
+        const photoSize = findPhotoSize();
+
+        const photoPath = `/assets/home/${photoSize}/image-hero-${photo}.jpg`;
+        return (
+            <IndividualElement key={id} howMuchTranslate={actualElement * 100}>
                 <img src={photoPath} alt={title} />
                 <ImgMask />
 
@@ -42,13 +81,16 @@ function Hero() {
                         </span>
                     </ButtonTemplate>
                 </Info>
-            </ContentWrapper>
+            </IndividualElement>
+        );
+    });
+    return (
+        <Wrapper>
+            <ContentWrapper> {slides}</ContentWrapper>
             <ButtonsWrapper>{buttons}</ButtonsWrapper>
         </Wrapper>
     );
 }
-
-//NOTE: add filter to photo
 
 const parentPaddingToRemove = '32px';
 
@@ -61,17 +103,26 @@ const Wrapper = styled.div`
         margin-inline: 0;
         width: 100%;
     }
-    @media (min-width: 1280px) {
-    }
 `;
 
 const ContentWrapper = styled.div`
+    display: flex;
     overflow: hidden;
+    align-items: center;
+`;
+
+const IndividualElement = styled.div`
+    flex-shrink: 0;
+    position: relative;
+    width: 100%;
     height: 560px;
     background-color: var(--mediumGrey);
+    transition: transform 0.5s linear;
+    transform: ${({ howMuchTranslate }) => `translateX(-${howMuchTranslate}%)`};
 
     img {
         width: 100%;
+        height: 100%;
     }
 
     @media (min-width: 768px) {

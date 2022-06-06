@@ -2,19 +2,19 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
-import useMatchMedia from '../../hooks/useMatchMedia';
+import { findPhotoSize } from './../../helpers/photoHelpers';
 import { data } from './hero-data';
 import IconArrow from './../icons/IconArrow';
 import {
+    WrapperWithoutMobilePadding as Wrapper,
     ButtonTemplate,
     HeadingL,
     Paragraph,
+    ImgMask,
 } from './../../styles/style-template';
 
-function Hero() {
+function Hero({ media }) {
     const [actualElement, setActualElement] = useState(0);
-    const mobile = useMatchMedia('(max-width: 48rem)');
-    const desktop = useMatchMedia('(min-width: 64rem)');
 
     const changeSlide = () => {
         setActualElement((prev) => {
@@ -46,24 +46,11 @@ function Hero() {
             </NavigationButtons>
         );
     });
-    const findPhotoSize = () => {
-        let photoSize;
-        if (mobile && !desktop) {
-            photoSize = 'mobile';
-        }
-        if (!mobile && !desktop) {
-            photoSize = 'tablet';
-        }
-        if (!mobile && desktop) {
-            photoSize = 'desktop';
-        }
-        return photoSize;
-    };
 
     const slides = data.map((element) => {
         const { id, title, description, photo } = element;
 
-        const photoSize = findPhotoSize();
+        const photoSize = findPhotoSize(media);
 
         const photoPath = `/assets/home/${photoSize}/image-hero-${photo}.jpg`;
         return (
@@ -86,24 +73,13 @@ function Hero() {
     });
     return (
         <Wrapper>
-            <ContentWrapper> {slides}</ContentWrapper>
+            <SliderWrapper> {slides}</SliderWrapper>
             <ButtonsWrapper>{buttons}</ButtonsWrapper>
         </Wrapper>
     );
 }
 
-const Wrapper = styled.section`
-    position: relative;
-    width: calc(100% + 2 * var(--mainPaddingMobile));
-    margin-inline: calc(-1 * var(--mainPaddingMobile));
-
-    @media (min-width: 48rem) {
-        margin-inline: 0;
-        width: 100%;
-    }
-`;
-
-const ContentWrapper = styled.div`
+const SliderWrapper = styled.div`
     display: flex;
     overflow: hidden;
     align-items: center;
@@ -128,14 +104,6 @@ const IndividualElement = styled.div`
     }
 `;
 
-const ImgMask = styled.div`
-    position: absolute;
-    inset: 0;
-    background: #000000;
-    mix-blend-mode: normal;
-    opacity: 0.35;
-`;
-
 const Info = styled.div`
     position: absolute;
     top: 50%;
@@ -150,25 +118,14 @@ const Info = styled.div`
 
     p {
         color: var(--white);
-    }
-
-    button {
-        display: flex;
-        gap: 24px;
-        margin-top: 5.25rem;
-        padding: 25px 32px 22px 37px;
-        transition: background-color 0.2s ease-in;
-
-        &:hover {
-            background-color: var(--darkGrey);
-        }
+        margin-bottom: 5.25rem;
     }
 
     @media (min-width: 48rem) {
         margin-inline: 58px;
 
-        button {
-            margin-top: 2.5rem;
+        p {
+            margin-bottom: 2.5rem;
         }
     }
 

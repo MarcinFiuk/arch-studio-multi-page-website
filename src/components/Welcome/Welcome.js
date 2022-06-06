@@ -7,7 +7,7 @@ function Welcome() {
         <Wrapper>
             <HeadingXLUpdated>Welcome</HeadingXLUpdated>
             <Description>
-                <HeadingMUpdated as='h2'>
+                <HeadingMUpdated as='h2' color='var(--veryDarkBlue)'>
                     Welcome to
                     <br />
                     Arch Studio
@@ -68,7 +68,6 @@ const Description = styled.div`
 `;
 
 const HeadingMUpdated = styled(HeadingM)`
-    color: var(--veryDarkBlue);
     margin-bottom: 1.375rem;
 
     @media (min-width: 48rem) {

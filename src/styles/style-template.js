@@ -23,7 +23,7 @@ export const HeadingL = styled.h2`
     // font grows between mobile and tablet
     letter-spacing: -1.2px;
     line-height: 48px;
-    color: var(--white);
+    color: ${({ color }) => (color ? color : 'var(--white)')};
 
     @media screen and (min-width: 48rem) {
         line-height: 80px;
@@ -33,7 +33,8 @@ export const HeadingL = styled.h2`
 
 export const HeadingM = styled.h3`
     font-weight: var(--fontWeight-700);
-    color: var(--veryDarkBlue);
+    /* color: var(--veryDarkBlue); */
+    color: ${({ color }) => (color ? color : 'var(--white)')};
     letter-spacing: -1.7px;
     line-height: 52px;
     font-size: clamp(3rem, 1.6rem + 6.1vw, 4.5rem);
@@ -48,7 +49,8 @@ export const HeadingS = styled.h4`
     font-weight: var(--fontWeight-700);
     font-size: 2rem;
     line-height: 40px;
-    color: var(--white);
+    /* color: var(--white); */
+    color: ${({ color }) => (color ? color : 'var(--white)')};
 `;
 
 export const Paragraph = styled.p`
@@ -66,4 +68,31 @@ export const ButtonTemplate = styled.button`
     line-height: 1.5625rem;
     border: none;
     cursor: pointer;
+    display: flex;
+    gap: 24px;
+    padding: 25px 32px 22px 37px;
+    transition: background-color 0.2s ease-in;
+
+    &:hover {
+        background-color: var(--darkGrey);
+    }
+`;
+
+export const WrapperWithoutMobilePadding = styled.section`
+    position: relative;
+    width: calc(100% + 2 * var(--mainPaddingMobile));
+    margin-inline: calc(-1 * var(--mainPaddingMobile));
+
+    @media (min-width: 48rem) {
+        margin-inline: 0;
+        width: 100%;
+    }
+`;
+
+export const ImgMask = styled.div`
+    position: absolute;
+    inset: 0;
+    background: #000000;
+    mix-blend-mode: normal;
+    opacity: 0.35;
 `;

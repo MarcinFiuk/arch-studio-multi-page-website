@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const HeadingXL = styled.span`
     display: none;
@@ -33,7 +34,6 @@ export const HeadingL = styled.h2`
 
 export const HeadingM = styled.h3`
     font-weight: var(--fontWeight-700);
-    /* color: var(--veryDarkBlue); */
     color: ${({ color }) => (color ? color : 'var(--white)')};
     letter-spacing: -1.7px;
     line-height: 52px;
@@ -57,7 +57,7 @@ export const Paragraph = styled.p`
     font-weight: var(--fontWeight-500);
     font-size: 1.125rem;
     line-height: 24px;
-    color: var(--darkGrey);
+    color: ${({ color }) => (color ? color : 'var(--darkGrey)')};
 `;
 
 export const ButtonTemplate = styled.button`
@@ -68,6 +68,16 @@ export const ButtonTemplate = styled.button`
     line-height: 1.5625rem;
     border: none;
     cursor: pointer;
+`;
+
+export const LinkStyled = styled(Link)`
+    background-color: var(--veryDarkBlue);
+    text-decoration: none;
+    color: var(--white);
+    font-weight: var(--fontWeight-700);
+    font-size: 1.125rem;
+    line-height: 1.5625rem;
+    width: fit-content;
     display: flex;
     gap: 24px;
     padding: 25px 32px 22px 37px;
@@ -87,12 +97,4 @@ export const WrapperWithoutMobilePadding = styled.section`
         margin-inline: 0;
         width: 100%;
     }
-`;
-
-export const ImgMask = styled.div`
-    position: absolute;
-    inset: 0;
-    background: #000000;
-    mix-blend-mode: normal;
-    opacity: 0.35;
 `;

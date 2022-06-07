@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
-import { findPhotoSize } from './../../helpers/photoHelpers';
-import { data } from './hero-data';
-import IconArrow from './../icons/IconArrow';
+import { findPhotoSize } from '../../helpers/photoHelpers';
+import { data } from './../../data/home-page-hero-data';
+import IconArrow from '../icons/IconArrow';
 import {
     WrapperWithoutMobilePadding as Wrapper,
     ButtonTemplate,
     HeadingL,
     Paragraph,
-    ImgMask,
-} from './../../styles/style-template';
+    LinkStyled,
+} from '../../styles/style-template';
 
 function Hero({ media }) {
     const [actualElement, setActualElement] = useState(0);
@@ -24,7 +24,8 @@ function Hero({ media }) {
             return prev + 1;
         });
     };
-    useInterval(changeSlide, 4000, actualElement);
+
+    useInterval(changeSlide, 5000, actualElement);
     /* actualElement in useInterval reset the interval when slide is change manually*/
 
     const movePictureHandler = (index) => {
@@ -54,20 +55,25 @@ function Hero({ media }) {
 
         const photoPath = `/assets/home/${photoSize}/image-hero-${photo}.jpg`;
         return (
-            <IndividualElement key={id} howMuchTranslate={actualElement * 100}>
-                <img src={photoPath} alt={title} />
-                <ImgMask />
-
-                <Info>
-                    <HeadingL>{title}</HeadingL>
-                    <Paragraph>{description}</Paragraph>
-                    <ButtonTemplate>
-                        See Our Portfolio
-                        <span>
-                            <IconArrow />
-                        </span>
-                    </ButtonTemplate>
-                </Info>
+            <IndividualElement
+                key={id}
+                howMuchTranslate={actualElement * 100}
+                path={photoPath}
+            >
+                <MaskWrapper>
+                    <Info>
+                        <HeadingL>{title}</HeadingL>
+                        <Paragraph color='var(--white)'>
+                            {description}
+                        </Paragraph>
+                        <LinkStyled to='portfolio'>
+                            See Our Portfolio
+                            <span>
+                                <IconArrow />
+                            </span>
+                        </LinkStyled>
+                    </Info>
+                </MaskWrapper>
             </IndividualElement>
         );
     });
@@ -87,42 +93,39 @@ const SliderWrapper = styled.div`
 
 const IndividualElement = styled.div`
     flex: 0 0 100%;
-    position: relative;
-    width: 100%;
-    height: 560px;
-    background-color: var(--mediumGrey);
-    transition: transform 0.5s linear;
+    background-image: ${({ path }) => path && `url(${path})`};
+    min-height: 560px;
+    overflow: hidden;
+    display: flex;
     transform: ${({ howMuchTranslate }) => `translateX(-${howMuchTranslate}%)`};
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
+    transition: transform 0.5s linear;
 
     @media (min-width: 48rem) {
-        height: 720px;
+        min-height: 720px;
     }
 `;
 
+const MaskWrapper = styled.div`
+    background-color: hsla(1, 1%, 1%, 0.35);
+    display: flex;
+    width: inherit;
+    height: inherit;
+`;
+
 const Info = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 0;
-    color: var(--white);
-    transform: translateY(-50%);
-    margin-inline: 32px;
+    padding-left: 2rem;
+    align-self: center;
 
     h2 {
         margin-bottom: 0.75rem;
     }
 
     p {
-        color: var(--white);
         margin-bottom: 5.25rem;
     }
 
     @media (min-width: 48rem) {
-        margin-inline: 58px;
+        padding-left: 3.5rem;
 
         p {
             margin-bottom: 2.5rem;
@@ -130,8 +133,8 @@ const Info = styled.div`
     }
 
     @media (min-width: 64rem) {
-        width: 50%;
-        margin-inline: 190px;
+        width: 70%;
+        padding-left: 12rem;
 
         p {
             width: 80%;
@@ -141,9 +144,6 @@ const Info = styled.div`
 
 const ButtonsWrapper = styled.div`
     display: none;
-
-    button {
-    }
 
     @media (min-width: 64rem) {
         display: block;

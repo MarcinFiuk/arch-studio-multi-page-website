@@ -1,7 +1,8 @@
 import useMatchMedia from './../hooks/useMatchMedia';
-import AboutUsSection from '../components/AboutUsSection/AboutUsSection';
-import Hero from '../components/Hero/Hero';
-import Welcome from '../components/Welcome/Welcome';
+import AboutUsSection from '../components/home-page-sections/AboutUsSection';
+import Hero from '../components/home-page-sections/Hero';
+import WelcomeSection from '../components/home-page-sections/WelcomeSection';
+import FeaturedSection from '../components/home-page-sections/FeaturedSection';
 
 function Home() {
     const mobile = useMatchMedia('(max-width: 48rem)');
@@ -11,8 +12,9 @@ function Home() {
     return (
         <>
             <Hero media={media} />
-            <Welcome />
+            <WelcomeSection />
             <AboutUsSection media={media} />
+            <FeaturedSection media={media} />
         </>
     );
 }

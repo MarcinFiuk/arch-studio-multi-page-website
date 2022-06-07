@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { HeadingXL, HeadingM, Paragraph } from './../../styles/style-template';
+import { HeadingXL, HeadingM, Paragraph } from '../../styles/style-template';
 
-function Welcome() {
+function WelcomeSection() {
     return (
         <Wrapper>
             <HeadingXLUpdated>Welcome</HeadingXLUpdated>
@@ -31,7 +31,10 @@ function Welcome() {
                 </ParagraphUpdated>
             </Description>
             <PhotoWrapper>
-                <img src='/assets/home/desktop/image-welcome.jpg' alt='' />
+                <img
+                    src='/assets/home/desktop/image-welcome.jpg'
+                    alt='tiled wall'
+                />
             </PhotoWrapper>
         </Wrapper>
     );
@@ -93,4 +96,4 @@ const PhotoWrapper = styled.div`
         display: block;
     }
 `;
-export default Welcome;
+export default WelcomeSection;

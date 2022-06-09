@@ -14,10 +14,16 @@ function App() {
 }
 
 const MainStyled = styled.main`
-    padding-inline: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4.5rem;
+    padding-inline: var(--mainPaddingMobile);
 
     @media (min-width: 768px) {
         padding-inline: 97px;
+        gap: 12.5rem;
     }
     @media (min-width: 1280px) {
         padding-inline: 165px;

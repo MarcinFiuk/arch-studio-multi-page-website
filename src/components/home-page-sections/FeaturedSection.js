@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import IconArrow from '../icons/IconArrow';
 import PortfolioPhoto from '../PortfolioPhoto';
-import { HeadingM, LinkStyled } from '../../styles/style-template';
+import { HeadingM } from '../../styles/style-template';
 import { photoData } from '../../data/home-page-featured-photo.js.js';
+import LinkButton from './../LinkButton';
 
 function FeaturedSection({ media }) {
     const photos = photoData.map((photo) => {
@@ -17,12 +17,9 @@ function FeaturedSection({ media }) {
             <HeadingMUpdated as='h2' color='var(--veryDarkBlue)'>
                 Featured
             </HeadingMUpdated>
-            <LinkStyledUpdated to='portfolio'>
+            <LinkButton to='portfolio' custom='featuredSection'>
                 See All
-                <span>
-                    <IconArrow />
-                </span>
-            </LinkStyledUpdated>
+            </LinkButton>
             <PhotosWrapper>{photos}</PhotosWrapper>
         </Wrapper>
     );
@@ -53,12 +50,6 @@ const HeadingMUpdated = styled(HeadingM)`
     @media (min-width: 48rem) {
         margin-bottom: 0;
     }
-`;
-
-const LinkStyledUpdated = styled(LinkStyled)`
-    grid-area: link;
-    width: 100%;
-    justify-content: center;
 `;
 
 const PhotosWrapper = styled.div`

@@ -4,13 +4,12 @@ import { useState } from 'react';
 import useInterval from '../../hooks/useInterval';
 import { findPhotoSize } from '../../helpers/photoHelpers';
 import { data } from './../../data/home-page-hero-data';
-import IconArrow from '../icons/IconArrow';
+import LinkButton from './../LinkButton';
 import {
     WrapperWithoutMobilePadding as Wrapper,
     ButtonTemplate,
     HeadingL,
     Paragraph,
-    LinkStyled,
 } from '../../styles/style-template';
 
 function Hero({ media }) {
@@ -60,26 +59,17 @@ function Hero({ media }) {
                 howMuchTranslate={actualElement * 100}
                 path={photoPath}
             >
-                <MaskWrapper>
-                    <Info>
-                        <HeadingL>{title}</HeadingL>
-                        <Paragraph color='var(--white)'>
-                            {description}
-                        </Paragraph>
-                        <LinkStyled to='portfolio'>
-                            See Our Portfolio
-                            <span>
-                                <IconArrow />
-                            </span>
-                        </LinkStyled>
-                    </Info>
-                </MaskWrapper>
+                <Info>
+                    <HeadingL>{title}</HeadingL>
+                    <Paragraph color='var(--white)'>{description}</Paragraph>
+                    <LinkButton to='portfolio'>See Our Portfolio</LinkButton>
+                </Info>
             </IndividualElement>
         );
     });
     return (
         <Wrapper>
-            <SliderWrapper> {slides}</SliderWrapper>
+            <SliderWrapper>{slides}</SliderWrapper>
             <ButtonsWrapper>{buttons}</ButtonsWrapper>
         </Wrapper>
     );
@@ -92,29 +82,32 @@ const SliderWrapper = styled.div`
 `;
 
 const IndividualElement = styled.div`
-    flex: 0 0 100%;
+    position: relative;
     background-image: ${({ path }) => path && `url(${path})`};
+    background-size: cover;
     min-height: 560px;
     overflow: hidden;
     display: flex;
+    flex: 0 0 100%;
     transform: ${({ howMuchTranslate }) => `translateX(-${howMuchTranslate}%)`};
     transition: transform 0.5s linear;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: hsla(1, 1%, 1%, 0.35);
+    }
 
     @media (min-width: 48rem) {
         min-height: 720px;
     }
 `;
 
-const MaskWrapper = styled.div`
-    background-color: hsla(1, 1%, 1%, 0.35);
-    display: flex;
-    width: inherit;
-    height: inherit;
-`;
-
 const Info = styled.div`
     padding-left: 2rem;
     align-self: center;
+    z-index: 10;
 
     h2 {
         margin-bottom: 0.75rem;

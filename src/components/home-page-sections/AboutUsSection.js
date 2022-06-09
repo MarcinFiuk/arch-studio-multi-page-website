@@ -4,10 +4,8 @@ import { findPhotoSize } from '../../helpers/photoHelpers';
 import {
     WrapperWithoutMobilePadding as Wrapper,
     HeadingM,
-    ImgMask,
-    LinkStyled,
 } from '../../styles/style-template';
-import IconArrow from '../icons/IconArrow';
+import LinkButton from './../LinkButton';
 
 function AboutUsSection({ media }) {
     const photoSize = findPhotoSize(media);
@@ -15,41 +13,37 @@ function AboutUsSection({ media }) {
 
     return (
         <WrapperUpdated path={photoPath}>
-            <MaskWrapper>
-                <Info>
-                    <HeadingM as='h2'>
-                        Small team, <br />
-                        big ideas
-                    </HeadingM>
-                    <LinkStyled to='about'>
-                        About Us
-                        <span>
-                            <IconArrow />
-                        </span>
-                    </LinkStyled>
-                </Info>
-            </MaskWrapper>
+            <Info>
+                <HeadingM as='h2'>
+                    Small team, <br />
+                    big ideas
+                </HeadingM>
+                <LinkButton to='about'>About Us</LinkButton>
+            </Info>
         </WrapperUpdated>
     );
 }
 
 const WrapperUpdated = styled(Wrapper)`
+    position: relative;
     background-image: ${({ path }) => path && `url(${path})`};
+    background-size: cover;
     min-height: 560px;
     overflow: hidden;
     display: flex;
-`;
 
-const MaskWrapper = styled.div`
-    background-color: hsla(1, 1%, 1%, 0.5);
-    display: flex;
-    width: inherit;
-    height: inherit;
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: hsla(1, 1%, 1%, 0.5);
+    }
 `;
 
 const Info = styled.div`
     padding-left: 2rem;
     align-self: center;
+    z-index: 10;
 
     h2 {
         margin-bottom: 1.5rem;

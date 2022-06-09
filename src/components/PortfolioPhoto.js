@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { findPhotoSize } from '../helpers/photoHelpers';
-import { HeadingS, Paragraph, ImgMask } from '../styles/style-template';
+import { HeadingS, Paragraph } from '../styles/style-template';
 
 function PortfolioPhoto({ photoData, media }) {
     const { id, src, title, subTitle } = photoData;

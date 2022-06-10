@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import PortfolioPhoto from '../PortfolioPhoto';
-import { HeadingM } from '../../styles/style-template';
+import { HeadingM, PortfolioPhotosWrapper } from '../../styles/style-template';
 import { photoData } from '../../data/home-page-featured-photo.js.js';
 import LinkButton from './../LinkButton';
 
@@ -20,7 +20,7 @@ function FeaturedSection({ media }) {
             <LinkButton to='portfolio' custom='featuredSection'>
                 See All
             </LinkButton>
-            <PhotosWrapper>{photos}</PhotosWrapper>
+            <PortfolioPhotosWrapper>{photos}</PortfolioPhotosWrapper>
         </Wrapper>
     );
 }
@@ -52,22 +52,5 @@ const HeadingMUpdated = styled(HeadingM)`
     }
 `;
 
-const PhotosWrapper = styled.div`
-    grid-area: photo;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    margin-bottom: 24px;
-
-    @media (min-width: 48rem) {
-        margin-bottom: 0;
-    }
-
-    @media (min-width: 64rem) {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--gapPortfolioProjectDesktop);
-    }
-`;
 
 export default FeaturedSection;

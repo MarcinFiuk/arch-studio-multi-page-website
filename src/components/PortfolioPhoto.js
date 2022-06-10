@@ -20,6 +20,7 @@ function PortfolioPhoto({ photoData, media }) {
 }
 
 const Wrapper = styled.div`
+    position: relative;
     background-color: var(--veryDarkBlue);
     background-image: ${({ path }) =>
         path &&
@@ -27,6 +28,7 @@ const Wrapper = styled.div`
     background-size: cover;
     width: 100%;
     aspect-ratio: 311/240;
+    overflow: hidden;
 
     @media (min-width: 48rem) {
         aspect-ratio: 573/240;
@@ -39,8 +41,32 @@ const Wrapper = styled.div`
 `;
 
 const TextWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
+    bottom: 0;
+    left: 0;
     height: 100%;
-    transform: translate(10%, 64%);
+    width: 100%;
+
+    background-image: linear-gradient(
+        180deg,
+        hsla(0, 0%, 0%, 0) 0.01%,
+        hsla(0, 0%, 0%, 0.5) 100%
+    );
+
+    @media (min-width: 48rem) {
+        padding-left: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    @media (min-width: 64rem) {
+        min-height: 50%;
+        height: unset;
+    }
 `;
 
 export default PortfolioPhoto;

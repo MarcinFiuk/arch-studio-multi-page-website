@@ -78,3 +78,22 @@ export const WrapperWithoutMobilePadding = styled.section`
         width: 100%;
     }
 `;
+
+export const PortfolioPhotosWrapper = styled.div`
+    grid-area: photo;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+
+    @media (min-width: 48rem) {
+        margin-bottom: 0;
+    }
+
+    @media (min-width: 64rem) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--gapPortfolioProjectDesktop);
+    }
+`;

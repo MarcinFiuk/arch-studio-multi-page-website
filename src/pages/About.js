@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useMatchMedia from './../hooks/useMatchMedia';
 import HeroSecondary from '../components/HeroSecondary';
 import SectionWithOnePhotoDisplayedAtDesktop from '../components/SectionWithOnePhotoDisplayedAtDesktop';
+import Leaders from '../components/about-page/Leaders';
 
 function About() {
     const mobile = useMatchMedia('(max-width: 48rem)');
@@ -36,7 +37,7 @@ function About() {
                 desc2='Specializing in Urban Design allowed us to focus on creating exceptional structures that live in harmony with their surroundings. We consider every detail from every surrounding element to inform our designs.'
                 desc3='Our small team of world-class professionals provides input on every project.'
             />
-            {/* About Leaders */}
+            <Leaders />
         </>
     );
 }

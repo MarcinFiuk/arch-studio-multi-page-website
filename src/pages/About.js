@@ -16,6 +16,7 @@ function About() {
             <HeroSecondary
                 media={media}
                 photo='hero'
+                photoLocation = 'about'
                 alt='hands on a keyboard'
                 decorationText='About'
                 title='Your team of professionals'

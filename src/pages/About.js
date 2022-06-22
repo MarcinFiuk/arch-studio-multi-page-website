@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import useMatchMedia from './../hooks/useMatchMedia';
 import HeroSecondary from '../components/HeroSecondary';
 import SectionWithOnePhotoDisplayedAtDesktop from '../components/SectionWithOnePhotoDisplayedAtDesktop';
@@ -16,7 +14,7 @@ function About() {
             <HeroSecondary
                 media={media}
                 photo='hero'
-                photoLocation = 'about'
+                photoLocation='about'
                 alt='hands on a keyboard'
                 decorationText='About'
                 title='Your team of professionals'

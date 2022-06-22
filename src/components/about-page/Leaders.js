@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { HeadingM, HeadingS, Paragraph } from './../../styles/style-template';
-import { leaders } from './../../data/about-leaders';
+import { leaders } from './../../data/about-page-leaders';
 
 function Leaders() {
     const thumbnails = leaders.map((leader) => {

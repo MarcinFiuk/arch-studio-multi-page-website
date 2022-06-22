@@ -1,5 +1,6 @@
 import useMatchMedia from './../hooks/useMatchMedia';
 import HeroSecondary from './../components/HeroSecondary';
+import ContactDetails from '../components/contact-page/ContactDetails';
 
 function Contact() {
     const mobile = useMatchMedia('(max-width: 48rem)');
@@ -19,6 +20,15 @@ function Contact() {
                 us a call. We have two offices, one in Texas and one in Tennessee. If you find
                 yourself nearby, come say hello!'
             />
+            <ContactDetails
+                title={
+                    <>
+                        Contact
+                        <br /> Details
+                    </>
+                }
+            />
+            {/* map API */}
         </>
     );
 }

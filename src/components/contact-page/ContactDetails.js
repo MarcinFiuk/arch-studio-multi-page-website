@@ -6,13 +6,13 @@ import {
     ButtonTemplate,
     DecorativeLine,
 } from './../../styles/style-template';
-import { contactData } from './../../data/contact-page-contact-data';
 import IconArrow from './../icons/IconArrow';
 
-function ContactDetails({ title }) {
-    const contactDetails = contactData.map((contact) => {
-        const { id, officeTitle, email, address, phoneNr } = contact;
+function ContactDetails({ title, offices, getOfficeIndex }) {
+    const contactDetails = offices.map((office, index) => {
+        const { id, officeTitle, email, address, phoneNr } = office;
         const { location, city, postCode } = address;
+
         return (
             <AddressWrapper key={id}>
                 <ContactWrapper>
@@ -26,9 +26,11 @@ function ContactDetails({ title }) {
                     <Paragraph>
                         Address: {location}, {city} {postCode}
                     </Paragraph>
-                    <Paragraph>Phone: {phoneNr}</Paragraph>
+                    <Paragraph as='a' href={'tel:+' + phoneNr}>
+                        Phone: {phoneNr}
+                    </Paragraph>
                 </ContactWrapper>
-                <ButtonTemplateUpdated>
+                <ButtonTemplateUpdated onClick={() => getOfficeIndex(index)}>
                     View on Map
                     <span>
                         <IconArrow stroke='var(--veryDarkBlue)' />

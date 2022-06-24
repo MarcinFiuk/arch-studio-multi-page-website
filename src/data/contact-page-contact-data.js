@@ -9,6 +9,7 @@ export const contactData = [
             postCode: 'EH1 2NG',
         },
         phoneNr: '123 456 789',
+        coordinates: [55.948, -3.2],
     },
     {
         id: 2,
@@ -20,5 +21,6 @@ export const contactData = [
             postCode: 'EH16 4SY',
         },
         phoneNr: '987 654 321',
+        coordinates: [55.9255, -3.141],
     },
 ];

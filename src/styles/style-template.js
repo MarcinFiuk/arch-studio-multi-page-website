@@ -55,6 +55,7 @@ export const Paragraph = styled.p`
     font-size: 1.125rem;
     line-height: ${({ lineHeight }) => lineHeight || '24px'};
     color: ${({ color }) => (color ? color : 'var(--darkGrey)')};
+    text-decoration: none;
 `;
 
 export const ButtonTemplate = styled.button`

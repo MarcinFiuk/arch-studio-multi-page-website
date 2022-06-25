@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
@@ -10,12 +11,7 @@ function LeafletMap({ officeLocation }) {
                 markerData;
             const { location, city, postCode } = address;
             return (
-                <Marker
-                    position={coordinates}
-                    eventHandlers={{
-                        click: () => {},
-                    }}
-                >
+                <Marker position={coordinates}>
                     <Popup>
                         <ContactWrapper>
                             <p>{officeTitle}</p>

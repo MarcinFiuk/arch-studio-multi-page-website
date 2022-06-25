@@ -5,6 +5,7 @@ import HeroSecondary from './../components/HeroSecondary';
 import ContactDetails from '../components/contact-page/ContactDetails';
 import LeafletMap from './../components/LeafletMap';
 import { contactData } from './../data/contact-page-contact-data';
+import ContactForm from '../components/ContactForm';
 
 function Contact() {
     const [showOfficeAtTheMap, setShowOfficeAtTheMap] = useState(null);
@@ -40,6 +41,7 @@ function Contact() {
                 getOfficeIndex={getOffice}
             />
             <LeafletMap officeLocation={showOfficeAtTheMap} />
+            <ContactForm />
         </>
     );
 }

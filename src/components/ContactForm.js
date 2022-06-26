@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useId } from 'react';
+import { useState, useId } from 'react';
 
 import {
     HeadingM,
@@ -7,27 +7,42 @@ import {
     Paragraph,
 } from './../styles/style-template';
 import IconArrow from './icons/IconArrow';
+import { validateForm } from './../helpers/formHelpers';
 
 function ContactForm() {
-    const nameId = useId();
+    const [hasError, setHasError] = useState({});
+    const userNameId = useId();
     const emailId = useId();
     const messageId = useId();
+
+    const formValidationHandler = (event) => {
+        event.preventDefault();
+
+        const errors = validateForm(event);
+
+        setHasError(errors);
+    };
 
     return (
         <Wrapper>
             <HeadingM as='h2' color='var(--veryDarkBlue)'>
                 Connect with us
             </HeadingM>
-            <form>
+            <form onSubmit={formValidationHandler}>
                 <FormChildWrapper>
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
-                        htmlFor={nameId}
+                        htmlFor={userNameId}
                     >
                         Name:
                     </Label>
-                    <input id={nameId} name='name' placeholder='type name' />
+                    <input
+                        id={userNameId}
+                        name='userName'
+                        type='text'
+                        placeholder='type name'
+                    />
                 </FormChildWrapper>
                 <FormChildWrapper>
                     <Label
@@ -37,7 +52,12 @@ function ContactForm() {
                     >
                         Email:
                     </Label>
-                    <input id={emailId} name='email' placeholder='type email' />
+                    <input
+                        id={emailId}
+                        name='email'
+                        // type='email'
+                        placeholder='type email'
+                    />
                 </FormChildWrapper>
                 <FormChildWrapper>
                     <Label
@@ -51,6 +71,7 @@ function ContactForm() {
                         id={messageId}
                         rows='3'
                         name='message'
+                        type='text'
                         placeholder='type message'
                     />
                 </FormChildWrapper>

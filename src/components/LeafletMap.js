@@ -30,7 +30,7 @@ function LeafletMap({ officeLocation }) {
     };
 
     return (
-        <WrapperWithoutMobilePadding as='div'>
+        <WrapperWithoutMobilePadding>
             <MapContainerUpdated
                 center={[55.952, -3.19]}
                 zoom={12}

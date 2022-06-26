@@ -20,33 +20,33 @@ function ContactForm() {
             </HeadingM>
             <form>
                 <FormChildWrapper>
-                    <Paragraph
+                    <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
                         htmlFor={nameId}
                     >
                         Name:
-                    </Paragraph>
+                    </Label>
                     <input id={nameId} name='name' placeholder='type name' />
                 </FormChildWrapper>
                 <FormChildWrapper>
-                    <Paragraph
+                    <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
                         htmlFor={emailId}
                     >
                         Email:
-                    </Paragraph>
+                    </Label>
                     <input id={emailId} name='email' placeholder='type email' />
                 </FormChildWrapper>
                 <FormChildWrapper>
-                    <Paragraph
+                    <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
                         htmlFor={messageId}
                     >
                         Message:
-                    </Paragraph>
+                    </Label>
                     <textarea
                         id={messageId}
                         rows='3'
@@ -62,7 +62,38 @@ function ContactForm() {
     );
 }
 
-const Wrapper = styled.section``;
+//NOTE: why textarea div is bigger than content?
+
+const Wrapper = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+    width: 100%;
+
+    h2 {
+        flex-basis: 50%;
+    }
+
+    @media (min-width: 48rem) {
+        gap: 3.75rem;
+        h2 {
+            flex-basis: 100%;
+        }
+    }
+
+    @media (min-width: 64rem) {
+        flex-direction: row;
+        justify-content: space-between;
+
+        h2 {
+            flex-basis: 30%;
+        }
+
+        form {
+            flex-basis: 60%;
+        }
+    }
+`;
 
 const FormChildWrapper = styled.div`
     margin-bottom: 2.75rem;
@@ -80,7 +111,8 @@ const FormChildWrapper = styled.div`
         font-size: 1.25rem;
         line-height: 22px;
         letter-spacing: -0.3125px;
-        padding-inline: 0.75rem;
+        padding-left: 32px;
+        padding-right: 16px;
     }
 
     textarea {
@@ -101,6 +133,10 @@ const FormChildWrapper = styled.div`
     textarea::placeholder {
         color: var(--lightGrey);
     }
+`;
+
+const Label = styled(Paragraph)`
+    margin-left: 32px;
 `;
 
 const ButtonSubmit = styled(ButtonTemplate)`

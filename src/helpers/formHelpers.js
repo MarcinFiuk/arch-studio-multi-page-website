@@ -1,20 +1,20 @@
-const checkTypeNames = {
+const typeOfErrors = {
     EMAIL: 'email',
     IS_EMPTY: 'isEmpty',
 };
 
-const validateParameters = [
+const whatToValidate = [
     {
         formName: 'userName',
-        validationType: [checkTypeNames.IS_EMPTY],
+        validationType: [typeOfErrors.IS_EMPTY],
     },
     {
         formName: 'email',
-        validationType: [checkTypeNames.IS_EMPTY, checkTypeNames.EMAIL],
+        validationType: [typeOfErrors.IS_EMPTY, typeOfErrors.EMAIL],
     },
     {
         formName: 'message',
-        validationType: [checkTypeNames.IS_EMPTY],
+        validationType: [typeOfErrors.IS_EMPTY],
     },
 ];
 
@@ -38,7 +38,7 @@ const validateFields = (field, checkType = '') => {
 };
 
 export const validateForm = (e) => {
-    const errors = validateParameters.reduce((potentialErrors, field) => {
+    const errors = whatToValidate.reduce((potentialErrors, field) => {
         const { formName, validationType } = field;
         const formField = e.target[formName].value;
 
@@ -53,6 +53,11 @@ export const validateForm = (e) => {
                     [formName]: validationResult,
                 };
                 break;
+            } else {
+                potentialErrors = {
+                    ...potentialErrors,
+                    [formName]: '',
+                };
             }
         }
         return potentialErrors;

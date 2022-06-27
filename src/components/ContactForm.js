@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useState, useId } from 'react';
 
 import {
@@ -8,6 +8,7 @@ import {
 } from './../styles/style-template';
 import IconArrow from './icons/IconArrow';
 import { validateForm } from './../helpers/formHelpers';
+import Error from './Error';
 
 function ContactForm() {
     const [hasError, setHasError] = useState({});
@@ -20,6 +21,8 @@ function ContactForm() {
 
         const errors = validateForm(event);
 
+        console.log(errors);
+
         setHasError(errors);
     };
 
@@ -29,7 +32,9 @@ function ContactForm() {
                 Connect with us
             </HeadingM>
             <form onSubmit={formValidationHandler}>
-                <FormChildWrapper>
+                <FormChildWrapper
+                    fieldHasError={hasError.userName ? true : false}
+                >
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
@@ -43,8 +48,11 @@ function ContactForm() {
                         type='text'
                         placeholder='type name'
                     />
+                    {hasError.userName && (
+                        <Error errorMessage={hasError.userName} />
+                    )}
                 </FormChildWrapper>
-                <FormChildWrapper>
+                <FormChildWrapper fieldHasError={hasError.email ? true : false}>
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
@@ -52,14 +60,12 @@ function ContactForm() {
                     >
                         Email:
                     </Label>
-                    <input
-                        id={emailId}
-                        name='email'
-                        // type='email'
-                        placeholder='type email'
-                    />
+                    <input id={emailId} name='email' placeholder='type email' />
+                    {hasError.email && <Error errorMessage={hasError.email} />}
                 </FormChildWrapper>
-                <FormChildWrapper>
+                <FormChildWrapper
+                    fieldHasError={hasError.message ? true : false}
+                >
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
@@ -74,6 +80,9 @@ function ContactForm() {
                         type='text'
                         placeholder='type message'
                     />
+                    {hasError.message && (
+                        <Error errorMessage={hasError.message} />
+                    )}
                 </FormChildWrapper>
                 <ButtonSubmit>
                     <IconArrow />
@@ -83,8 +92,6 @@ function ContactForm() {
     );
 }
 
-//NOTE: why textarea div is bigger than content?
-
 const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
@@ -92,13 +99,13 @@ const Wrapper = styled.section`
     width: 100%;
 
     h2 {
-        flex-basis: 50%;
+        width: 80%;
     }
 
     @media (min-width: 48rem) {
         gap: 3.75rem;
         h2 {
-            flex-basis: 100%;
+            width: 100%;
         }
     }
 
@@ -107,17 +114,18 @@ const Wrapper = styled.section`
         justify-content: space-between;
 
         h2 {
-            flex-basis: 30%;
+            width: 30%;
         }
 
         form {
-            flex-basis: 60%;
+            width: 60%;
         }
     }
 `;
 
 const FormChildWrapper = styled.div`
     margin-bottom: 2.75rem;
+    position: relative;
 
     &:last-of-type {
         margin-bottom: 0;
@@ -132,12 +140,16 @@ const FormChildWrapper = styled.div`
         font-size: 1.25rem;
         line-height: 22px;
         letter-spacing: -0.3125px;
-        padding-left: 32px;
-        padding-right: 16px;
+        padding: 0 16px 2px 32px;
+        transition-property: border, padding;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-in;
+        color: var(--veryDarkBlue);
     }
 
     textarea {
         resize: none;
+        display: block;
 
         &::placeholder {
             transform: translateY(200%);
@@ -154,11 +166,34 @@ const FormChildWrapper = styled.div`
     textarea::placeholder {
         color: var(--lightGrey);
     }
+
+    input:hover,
+    textarea:hover {
+        border-bottom-width: 3px;
+        padding-bottom: 0;
+    }
+
+    ${({ fieldHasError }) =>
+        fieldHasError &&
+        css`
+            label {
+                color: var(--red);
+            }
+
+            input,
+            textarea {
+                color: var(--red);
+                border-bottom-color: var(--red);
+            }
+
+            input::placeholder,
+            textarea::placeholder {
+                color: var(--red);
+            }
+        `}
 `;
 
-const Label = styled(Paragraph)`
-    margin-left: 32px;
-`;
+const Label = styled(Paragraph)``;
 
 const ButtonSubmit = styled(ButtonTemplate)`
     display: grid;
@@ -167,7 +202,6 @@ const ButtonSubmit = styled(ButtonTemplate)`
     width: 80px;
     height: 80px;
     margin-left: auto;
-    transform: translateY(-8px);
 `;
 
 export default ContactForm;

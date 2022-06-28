@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import PortfolioPhoto from '../PortfolioPhoto';
 import { HeadingM, PortfolioPhotosWrapper } from '../../styles/style-template';
-import { photoData } from '../../data/home-page-featured-photo.js.js';
+import { photoData } from '../../data/home-page-featured-photo';
 import LinkButton from './../LinkButton';
 
 function FeaturedSection({ media }) {
@@ -51,6 +51,5 @@ const HeadingMUpdated = styled(HeadingM)`
         margin-bottom: 0;
     }
 `;
-
 
 export default FeaturedSection;

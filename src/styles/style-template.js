@@ -47,7 +47,6 @@ export const HeadingS = styled.h4`
     font-weight: var(--fontWeight-700);
     font-size: 2rem;
     line-height: 40px;
-    /* color: var(--white); */
     color: ${({ color }) => (color ? color : 'var(--white)')};
 `;
 
@@ -96,4 +95,13 @@ export const PortfolioPhotosWrapper = styled.div`
         flex-wrap: wrap;
         gap: var(--gapPortfolioProjectDesktop);
     }
+`;
+
+export const DecorativeLine = styled.span`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65px;
+    height: 1px;
+    background-color: var(--lightGrey);
 `;

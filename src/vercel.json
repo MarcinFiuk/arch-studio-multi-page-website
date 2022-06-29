@@ -1,6 +1,3 @@
 {
-    "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-    "scripts": {
-        "build": "react-scripts build"
-    }
+    "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }

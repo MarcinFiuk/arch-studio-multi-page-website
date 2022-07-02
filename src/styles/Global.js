@@ -15,7 +15,6 @@ export const GlobalStyle = createGlobalStyle`
 
 --mainPaddingMobile: 32px;
 --gapPortfolioProjectDesktop:30px;
-
 }
 
 body{

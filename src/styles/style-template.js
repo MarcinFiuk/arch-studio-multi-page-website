@@ -51,10 +51,11 @@ export const HeadingS = styled.h4`
 `;
 
 export const Paragraph = styled.p`
-    font-weight: var(--fontWeight-500);
+    font-weight: ${({ fontWeight }) => fontWeight || 'var(--fontWeight-500)'};
     font-size: 1.125rem;
-    line-height: 24px;
+    line-height: ${({ lineHeight }) => lineHeight || '24px'};
     color: ${({ color }) => (color ? color : 'var(--darkGrey)')};
+    text-decoration: none;
 `;
 
 export const ButtonTemplate = styled.button`

@@ -8,9 +8,17 @@ import {
 } from './../styles/style-template';
 import { findPhotoSize } from './../helpers/photoHelpers';
 
-function HeroSecondary({ photo, alt, decorationText, title, desc, media }) {
+function HeroSecondary({
+    photo,
+    photoLocation,
+    alt,
+    decorationText,
+    title,
+    desc,
+    media,
+}) {
     const photoSize = findPhotoSize(media);
-    const photoPath = `/assets/about/${photoSize}/image-${photo}.jpg`;
+    const photoPath = `/assets/${photoLocation}/${photoSize}/image-${photo}.jpg`;
 
     return (
         <WrapperStyled>

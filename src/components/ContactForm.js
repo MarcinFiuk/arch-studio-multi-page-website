@@ -7,21 +7,53 @@ import {
     Paragraph,
 } from './../styles/style-template';
 import IconArrow from './icons/IconArrow';
-import { validateForm } from './../helpers/formHelpers';
 import Error from './Error';
 
 function ContactForm() {
     const [hasError, setHasError] = useState({});
-    const userNameId = useId();
-    const emailId = useId();
-    const messageId = useId();
+    const id = useId();
 
-    const formValidationHandler = (event) => {
-        event.preventDefault();
+    const formValidationHandler = (e) => {
+        e.preventDefault();
 
-        const errors = validateForm(event);
+        if (!e.currentTarget.checkValidity()) {
+            if (e.currentTarget.userName.validity.valueMissing) {
+                setHasError((prev) => {
+                    return { ...prev, userName: "Can't be empty" };
+                });
+            } else {
+                setHasError((prev) => {
+                    return { ...prev, userName: '' };
+                });
+            }
 
-        setHasError(errors);
+            if (e.currentTarget.email.validity.valueMissing) {
+                setHasError((prev) => {
+                    return { ...prev, email: "Can't be empty" };
+                });
+            } else if (!e.currentTarget.email.validity.valid) {
+                setHasError((prev) => {
+                    return {
+                        ...prev,
+                        email: 'Please use a valid email address',
+                    };
+                });
+            } else {
+                setHasError((prev) => {
+                    return { ...prev, email: '' };
+                });
+            }
+
+            if (e.currentTarget.message.validity.valueMissing) {
+                setHasError((prev) => {
+                    return { ...prev, message: "Can't be empty" };
+                });
+            } else {
+                setHasError((prev) => {
+                    return { ...prev, message: '' };
+                });
+            }
+        }
     };
 
     return (
@@ -29,22 +61,23 @@ function ContactForm() {
             <HeadingM as='h2' color='var(--veryDarkBlue)'>
                 Connect with us
             </HeadingM>
-            <form onSubmit={formValidationHandler}>
+            <form onSubmit={formValidationHandler} noValidate>
                 <FormChildWrapper
                     fieldHasError={hasError.userName ? true : false}
                 >
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
-                        htmlFor={userNameId}
+                        htmlFor={`${id}-name`}
                     >
                         Name:
                     </Label>
                     <input
-                        id={userNameId}
+                        id={`${id}-name`}
                         name='userName'
                         type='text'
                         placeholder='type name'
+                        required
                     />
                     {hasError.userName && (
                         <Error errorMessage={hasError.userName} />
@@ -54,11 +87,17 @@ function ContactForm() {
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
-                        htmlFor={emailId}
+                        htmlFor={`${id}-email`}
                     >
                         Email:
                     </Label>
-                    <input id={emailId} name='email' placeholder='type email' />
+                    <input
+                        id={`${id}-email`}
+                        name='email'
+                        type='email'
+                        placeholder='type email'
+                        required
+                    />
                     {hasError.email && <Error errorMessage={hasError.email} />}
                 </FormChildWrapper>
                 <FormChildWrapper
@@ -67,16 +106,16 @@ function ContactForm() {
                     <Label
                         as='label'
                         fontWeight='var(--fontWeight-700)   '
-                        htmlFor={messageId}
+                        htmlFor={`${id}-message`}
                     >
                         Message:
                     </Label>
                     <textarea
-                        id={messageId}
+                        id={`${id}-message`}
                         rows='3'
                         name='message'
-                        type='text'
                         placeholder='type message'
+                        required
                     />
                     {hasError.message && (
                         <Error errorMessage={hasError.message} />

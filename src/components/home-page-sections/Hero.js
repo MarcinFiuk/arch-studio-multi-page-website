@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
-import { findPhotoSize } from '../../helpers/photoHelpers';
 import { slidesData } from './../../data/home-page-hero-data';
 import LinkButton from './../LinkButton';
 import {

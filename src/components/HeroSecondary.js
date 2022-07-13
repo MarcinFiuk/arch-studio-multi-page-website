@@ -6,7 +6,6 @@ import {
     HeadingM,
     Paragraph,
 } from './../styles/style-template';
-import { findPhotoSize } from './../helpers/photoHelpers';
 
 function HeroSecondary({
     photo,
@@ -21,11 +20,11 @@ function HeroSecondary({
             <PhotoWrapper>
                 <picture>
                     <source
-                        srcset={`/assets/${photoLocation}/desktop/image-${photo}.jpg`}
+                        srcSet={`/assets/${photoLocation}/desktop/image-${photo}.jpg`}
                         media='(min-width:64rem)'
                     />
                     <source
-                        srcset={`/assets/${photoLocation}/tablet/image-${photo}.jpg`}
+                        srcSet={`/assets/${photoLocation}/tablet/image-${photo}.jpg`}
                         media='(min-width:48rem)'
                     />
 

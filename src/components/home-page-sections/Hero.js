@@ -69,10 +69,7 @@ function Hero({ media }) {
     });
     return (
         <Wrapper>
-            <SliderWrapper>
-                {slides}
-                {slides}
-            </SliderWrapper>
+            <SliderWrapper>{slides}</SliderWrapper>
             <ButtonsWrapper>{buttons}</ButtonsWrapper>
         </Wrapper>
     );

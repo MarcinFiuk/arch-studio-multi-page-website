@@ -8,7 +8,6 @@ function PortfolioPhoto({ photoData, media }) {
     const photoSize = findPhotoSize(media);
     const photoPath = `/assets/portfolio/${photoSize}/${src}`;
 
-    console.log(photoPath);
     return (
         <Wrapper path={photoPath}>
             <TextWrapper>

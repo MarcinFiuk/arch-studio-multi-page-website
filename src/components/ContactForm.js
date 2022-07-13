@@ -21,8 +21,6 @@ function ContactForm() {
 
         const errors = validateForm(event);
 
-        console.log(errors);
-
         setHasError(errors);
     };
 

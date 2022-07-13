@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { findPhotoSize } from '../../helpers/photoHelpers';
 import {
     WrapperWithoutMobilePadding as Wrapper,
     HeadingM,
@@ -8,11 +7,8 @@ import {
 import LinkButton from './../LinkButton';
 
 function AboutUsSection({ media }) {
-    const photoSize = findPhotoSize(media);
-    const photoPath = `/assets/home/${photoSize}/image-small-team.jpg`;
-
     return (
-        <WrapperUpdated path={photoPath}>
+        <WrapperUpdated>
             <Info>
                 <HeadingM as='h2'>
                     Small team, <br />
@@ -26,11 +22,19 @@ function AboutUsSection({ media }) {
 
 const WrapperUpdated = styled(Wrapper)`
     position: relative;
-    background-image: ${({ path }) => path && `url(${path})`};
+    background-color: var(--lightGray);
+    background-image: url('/assets/home/mobile/image-small-team.jpg');
     background-size: cover;
     min-height: 560px;
     overflow: hidden;
     display: flex;
+
+    @media (min-width: 48rem) {
+        background-image: url('/assets/home/tablet/image-small-team.jpg');
+    }
+    @media (min-width: 64rem) {
+        background-image: url('/assets/home/desktop/image-small-team.jpg');
+    }
 
     &::after {
         content: '';

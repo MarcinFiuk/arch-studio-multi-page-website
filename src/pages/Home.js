@@ -6,12 +6,10 @@ import FeaturedSection from '../components/home-page-sections/FeaturedSection';
 
 function Home() {
     const mobile = useMatchMedia('(max-width: 48rem)');
-    const desktop = useMatchMedia('(min-width: 64rem)');
 
-    const media = [mobile, desktop];
     return (
         <>
-            <Hero media={media} />
+            <Hero />
             <SectionWithOnePhotoDisplayedAtDesktop
                 photo='/assets/home/desktop/image-welcome.jpg'
                 alt='tiled wall'
@@ -37,8 +35,8 @@ function Home() {
                 harmony the surrounding area to create truly stunning
                 projects that will stand the test of time.'
             />
-            <AboutUsSection media={media} />
-            <FeaturedSection media={media} />
+            <AboutUsSection />
+            <FeaturedSection />
         </>
     );
 }

@@ -1,4 +1,4 @@
-export const leaders = [
+export const leadersData = [
     {
         id: 1,
         photo: 'avatar-jake',

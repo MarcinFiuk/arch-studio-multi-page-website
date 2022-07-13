@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import useInterval from '../../hooks/useInterval';
 import { findPhotoSize } from '../../helpers/photoHelpers';
-import { data } from './../../data/home-page-hero-data';
+import { slidesData } from './../../data/home-page-hero-data';
 import LinkButton from './../LinkButton';
 import {
     WrapperWithoutMobilePadding as Wrapper,
@@ -12,7 +12,7 @@ import {
     Paragraph,
 } from '../../styles/style-template';
 
-function Hero({ media }) {
+function Hero() {
     const [actualElement, setActualElement] = useState(0);
 
     const changeSlide = () => {
@@ -31,7 +31,7 @@ function Hero({ media }) {
         setActualElement(index);
     };
 
-    const buttons = data.map((_, index) => {
+    const buttons = slidesData.map((_, index) => {
         const photoNr = index + 1;
         const paddedPhotoNr = photoNr.toString().padStart(2, 0);
 
@@ -47,17 +47,14 @@ function Hero({ media }) {
         );
     });
 
-    const slides = data.map((element) => {
+    const slides = slidesData.map((element) => {
         const { id, title, description, photo } = element;
 
-        const photoSize = findPhotoSize(media);
-
-        const photoPath = `/assets/home/${photoSize}/image-hero-${photo}.jpg`;
         return (
             <IndividualElement
                 key={id}
                 howMuchTranslate={actualElement * 100}
-                path={photoPath}
+                photo={photo}
             >
                 <Info>
                     <HeadingL>{title}</HeadingL>
@@ -83,7 +80,8 @@ const SliderWrapper = styled.div`
 
 const IndividualElement = styled.div`
     position: relative;
-    background-image: ${({ path }) => path && `url(${path})`};
+    background-image: ${({ photo }) =>
+        photo && `url(/assets/home/mobile/image-hero-${photo}.jpg)`};
     background-size: cover;
     min-height: 560px;
     overflow: hidden;
@@ -101,6 +99,13 @@ const IndividualElement = styled.div`
 
     @media (min-width: 48rem) {
         min-height: 720px;
+        background-image: ${({ photo }) =>
+            photo && `url(/assets/home/tablet/image-hero-${photo}.jpg)`};
+    }
+
+    @media (min-width: 64rem) {
+        background-image: ${({ photo }) =>
+            photo && `url(/assets/home/desktop/image-hero-${photo}.jpg)`};
     }
 `;
 

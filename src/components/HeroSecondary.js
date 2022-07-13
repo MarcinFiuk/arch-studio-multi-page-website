@@ -15,15 +15,25 @@ function HeroSecondary({
     decorationText,
     title,
     desc,
-    media,
 }) {
-    const photoSize = findPhotoSize(media);
-    const photoPath = `/assets/${photoLocation}/${photoSize}/image-${photo}.jpg`;
-
     return (
         <WrapperStyled>
             <PhotoWrapper>
-                <img src={photoPath} alt={alt} />
+                <picture>
+                    <source
+                        srcset={`/assets/${photoLocation}/desktop/image-${photo}.jpg`}
+                        media='(min-width:64rem)'
+                    />
+                    <source
+                        srcset={`/assets/${photoLocation}/tablet/image-${photo}.jpg`}
+                        media='(min-width:48rem)'
+                    />
+
+                    <img
+                        src={`/assets/${photoLocation}/mobile/image-${photo}.jpg`}
+                        alt={alt}
+                    />
+                </picture>
             </PhotoWrapper>
             <TextWrapper>
                 <HeadingXLStyled>{decorationText}</HeadingXLStyled>

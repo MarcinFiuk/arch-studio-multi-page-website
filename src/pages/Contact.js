@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import useMatchMedia from './../hooks/useMatchMedia';
 import HeroSecondary from './../components/HeroSecondary';
 import ContactDetails from '../components/contact-page/ContactDetails';
 import LeafletMap from './../components/LeafletMap';
@@ -9,10 +8,6 @@ import ContactForm from '../components/ContactForm';
 
 function Contact() {
     const [showOfficeAtTheMap, setShowOfficeAtTheMap] = useState(null);
-    const mobile = useMatchMedia('(max-width: 48rem)');
-    const desktop = useMatchMedia('(min-width: 64rem)');
-
-    const media = [mobile, desktop];
 
     const getOffice = (index) => {
         setShowOfficeAtTheMap(contactData[index]);
@@ -20,7 +15,6 @@ function Contact() {
     return (
         <>
             <HeroSecondary
-                media={media}
                 photo='hero'
                 photoLocation='contact'
                 alt='old type of phone'

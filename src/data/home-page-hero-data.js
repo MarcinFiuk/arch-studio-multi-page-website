@@ -1,4 +1,4 @@
-export const data = [
+export const slidesData = [
     {
         id: 1,
         title: 'Project Paramour',

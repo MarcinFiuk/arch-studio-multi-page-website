@@ -25,6 +25,7 @@ function SectionWithOnePhotoDisplayedAtDesktop({
     ) : (
         <HeadingXLUpdated>{decorationText}</HeadingXLUpdated>
     );
+
     return (
         <Wrapper>
             {decorationElement}

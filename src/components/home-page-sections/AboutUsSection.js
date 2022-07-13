@@ -6,7 +6,7 @@ import {
 } from '../../styles/style-template';
 import LinkButton from './../LinkButton';
 
-function AboutUsSection({ media }) {
+function AboutUsSection() {
     return (
         <WrapperUpdated>
             <Info>

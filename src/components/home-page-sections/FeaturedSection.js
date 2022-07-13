@@ -5,11 +5,9 @@ import { HeadingM, PortfolioPhotosWrapper } from '../../styles/style-template';
 import { photoData } from '../../data/home-page-featured-photo';
 import LinkButton from './../LinkButton';
 
-function FeaturedSection({ media }) {
+function FeaturedSection() {
     const photos = photoData.map((photo) => {
-        return (
-            <PortfolioPhoto key={photo.id} photoData={photo} media={media} />
-        );
+        return <PortfolioPhoto key={photo.id} photoData={photo} />;
     });
 
     return (

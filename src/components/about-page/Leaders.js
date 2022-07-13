@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import { HeadingM, HeadingS, Paragraph } from './../../styles/style-template';
-import { leaders } from './../../data/about-page-leaders';
+import { leadersData } from './../../data/about-page-leaders';
 
 function Leaders() {
-    const thumbnails = leaders.map((leader) => {
+    const thumbnails = leadersData.map((leader) => {
         const { id, photo, name, occupation } = leader;
         return (
             <Thumbnail key={id}>

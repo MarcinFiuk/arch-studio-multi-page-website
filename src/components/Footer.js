@@ -14,15 +14,19 @@ function Footer() {
                     <SquareLink to='/'>
                         <Logo fill='var(--white)' />
                     </SquareLink>
-                    <ParagraphAsLink as={Link} to='portfolio'>
+                    <Paragraph
+                        as={Link}
+                        to='portfolio'
+                        color='var(--mediumGrey)'
+                    >
                         Portfolio
-                    </ParagraphAsLink>
-                    <ParagraphAsLink as={Link} to='about'>
+                    </Paragraph>
+                    <Paragraph as={Link} to='about' color='var(--mediumGrey)'>
                         About Us
-                    </ParagraphAsLink>
-                    <ParagraphAsLink as={Link} to='contact'>
+                    </Paragraph>
+                    <Paragraph as={Link} to='contact' color='var(--mediumGrey)'>
                         Contact
-                    </ParagraphAsLink>
+                    </Paragraph>
                     <LinkButton to='portfolio'>See Our Portfolio</LinkButton>
                 </NavStyled>
             </Wrapper>
@@ -104,7 +108,4 @@ const SquareLink = styled(Link)`
     }
 `;
 
-const ParagraphAsLink = styled(Paragraph)`
-    color: var(--mediumGrey);
-`;
 export default Footer;

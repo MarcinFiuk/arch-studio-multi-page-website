@@ -5,7 +5,7 @@ import IconArrow from './icons/IconArrow';
 
 function LinkButton({ children, to, custom }) {
     return (
-        <LinkStyled to={to} customStyle={custom}>
+        <LinkStyled to={to} custom={custom}>
             {children}
             <span>
                 <IconArrow />
@@ -26,8 +26,8 @@ const LinkStyled = styled(Link)`
     gap: 24px;
     padding: 25px 32px 22px 37px;
     transition: background-color 0.2s ease-in;
-    ${({ customStyle }) =>
-        customStyle &&
+    ${({ custom }) =>
+        custom &&
         css`
             grid-area: link;
             width: 100%;

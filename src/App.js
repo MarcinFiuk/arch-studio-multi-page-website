@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { Reset } from './styles/Reset';
+import { GlobalStyle } from './styles/Global';
 import Home from './pages/Home';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
@@ -9,9 +12,18 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
+    const [disableHorizontalScroll, setDisableHorizontalScroll] =
+        useState(false);
+
+    const getScrollBlock = (value) => {
+        setDisableHorizontalScroll(value);
+    };
+
     return (
         <>
-            <Header />
+            <Reset />
+            <GlobalStyle disableHorizontalScroll={disableHorizontalScroll} />
+            <Header blockScroll={getScrollBlock} />
             <MainStyled>
                 <Routes>
                     <Route path='/' element={<Home />} />
@@ -32,12 +44,12 @@ const MainStyled = styled.main`
     align-items: center;
     gap: 4.5rem;
     padding-inline: var(--mainPaddingMobile);
-    padding-block: 4.5rem;
+    padding-bottom: 4.5rem;
 
     @media (min-width: 768px) {
         padding-inline: 97px;
         gap: 12.5rem;
-        padding-block: 12.5rem;
+        padding-bottom: 12.5rem;
     }
 
     @media (min-width: 1280px) {

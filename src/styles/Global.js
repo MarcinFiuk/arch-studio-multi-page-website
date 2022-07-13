@@ -21,6 +21,11 @@ body{
     font-family: 'League Spartan', sans-serif;
     max-width:1440px;
     margin-inline: auto;
+    overflow-x:hidden;
+    /* overflow:hidden; */
+
+    overflow-y:${({ disableHorizontalScroll }) =>
+        disableHorizontalScroll ? 'hidden' : ''}
 
 }
 `;

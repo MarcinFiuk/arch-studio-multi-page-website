@@ -48,6 +48,7 @@ export const HeadingS = styled.h4`
     font-size: 2rem;
     line-height: 40px;
     color: ${({ color }) => (color ? color : 'var(--white)')};
+    text-decoration: none;
 `;
 
 export const Paragraph = styled.p`

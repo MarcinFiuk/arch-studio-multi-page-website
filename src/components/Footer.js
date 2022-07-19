@@ -10,23 +10,39 @@ function Footer() {
         <FooterStyled>
             <Wrapper>
                 <NavStyled>
-                    <SquareLink to='/'>
+                    <SquareLink to='/' onClick={() => window.scrollTo(0, 0)}>
                         <Logo fill='var(--white)' />
                     </SquareLink>
                     <Paragraph
                         as={Link}
                         to='portfolio'
                         color='var(--mediumGrey)'
+                        onClick={() => window.scrollTo(0, 0)}
                     >
                         Portfolio
                     </Paragraph>
-                    <Paragraph as={Link} to='about' color='var(--mediumGrey)'>
+                    <Paragraph
+                        as={Link}
+                        to='about'
+                        color='var(--mediumGrey)'
+                        onClick={() => window.scrollTo(0, 0)}
+                    >
                         About Us
                     </Paragraph>
-                    <Paragraph as={Link} to='contact' color='var(--mediumGrey)'>
+                    <Paragraph
+                        as={Link}
+                        to='contact'
+                        color='var(--mediumGrey)'
+                        onClick={() => window.scrollTo(0, 0)}
+                    >
                         Contact
                     </Paragraph>
-                    <LinkButton to='portfolio'>See Our Portfolio</LinkButton>
+                    <LinkButton
+                        to='portfolio'
+                        onClick={() => window.scrollTo(0, 0)}
+                    >
+                        See Our Portfolio
+                    </LinkButton>
                 </NavStyled>
             </Wrapper>
         </FooterStyled>

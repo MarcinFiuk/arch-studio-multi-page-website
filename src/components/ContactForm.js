@@ -8,6 +8,7 @@ import {
 } from './../styles/style-template';
 import IconArrow from './icons/IconArrow';
 import Error from './Error';
+import { checkValidity, isEmpty } from './../helpers/formValidation';
 
 function ContactForm() {
     const [hasError, setHasError] = useState({});
@@ -16,43 +17,16 @@ function ContactForm() {
     const formValidationHandler = (e) => {
         e.preventDefault();
 
-        if (!e.currentTarget.checkValidity()) {
-            if (e.currentTarget.userName.validity.valueMissing) {
-                setHasError((prev) => {
-                    return { ...prev, userName: "Can't be empty" };
-                });
-            } else {
-                setHasError((prev) => {
-                    return { ...prev, userName: '' };
-                });
-            }
+        if (!e.currentTarget.checkValidity() || !isEmpty(hasError)) {
+            const userNameValidation = checkValidity(e.target.userName);
+            const emailValidation = checkValidity(e.target.email);
+            const messageValidation = checkValidity(e.target.message);
 
-            if (e.currentTarget.email.validity.valueMissing) {
-                setHasError((prev) => {
-                    return { ...prev, email: "Can't be empty" };
-                });
-            } else if (!e.currentTarget.email.validity.valid) {
-                setHasError((prev) => {
-                    return {
-                        ...prev,
-                        email: 'Please use a valid email address',
-                    };
-                });
-            } else {
-                setHasError((prev) => {
-                    return { ...prev, email: '' };
-                });
-            }
-
-            if (e.currentTarget.message.validity.valueMissing) {
-                setHasError((prev) => {
-                    return { ...prev, message: "Can't be empty" };
-                });
-            } else {
-                setHasError((prev) => {
-                    return { ...prev, message: '' };
-                });
-            }
+            setHasError({
+                ...userNameValidation,
+                ...emailValidation,
+                ...messageValidation,
+            });
         }
     };
 

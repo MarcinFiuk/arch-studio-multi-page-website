@@ -7,7 +7,13 @@ import LinkButton from './../LinkButton';
 
 function FeaturedSection() {
     const photos = photoData.map((photo) => {
-        return <PortfolioPhoto key={photo.id} photoData={photo} />;
+        return (
+            <PortfolioPhoto
+                key={photo.id}
+                photoData={photo}
+                decoration={photo.id}
+            />
+        );
     });
 
     return (

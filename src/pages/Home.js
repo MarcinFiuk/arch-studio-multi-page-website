@@ -1,12 +1,9 @@
-import useMatchMedia from './../hooks/useMatchMedia';
 import AboutUsSection from '../components/home-page-sections/AboutUsSection';
 import Hero from '../components/home-page-sections/Hero';
 import SectionWithOnePhotoDisplayedAtDesktop from '../components/SectionWithOnePhotoDisplayedAtDesktop';
 import FeaturedSection from '../components/home-page-sections/FeaturedSection';
 
 function Home() {
-    const mobile = useMatchMedia('(max-width: 48rem)');
-
     return (
         <>
             <Hero />
@@ -17,7 +14,6 @@ function Home() {
                 photoHeight='568px'
                 decorationText='Welcome'
                 marginLeft={true}
-                changeDecorationElement={mobile}
                 title={
                     <>
                         Welcome to <br /> Arch Studio

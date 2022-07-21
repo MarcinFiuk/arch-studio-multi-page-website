@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import useInterval from '../../hooks/useInterval';
 import { slidesData } from './../../data/home-page-hero-data';
@@ -13,17 +13,35 @@ import {
 
 function Hero() {
     const [actualElement, setActualElement] = useState(0);
+    const [slidesToDisplay, setSlidesToDisplay] = useState([]);
+    const [isTransitionCancel, setIsTransitionCancel] = useState(false);
+
+    useEffect(() => {
+        const slidesDataCopy = [...slidesData];
+        slidesDataCopy.push(slidesDataCopy[0]);
+        setSlidesToDisplay(slidesDataCopy);
+    }, []);
 
     const changeSlide = () => {
         setActualElement((prev) => {
-            if (prev === 3) {
+            if (prev === slidesToDisplay.length - 1) {
+                setIsTransitionCancel(true);
+                setTimeout(() => {
+                    setIsTransitionCancel(false);
+                }, 100);
                 return 0;
             }
             return prev + 1;
         });
     };
 
-    useInterval(changeSlide, 5000, actualElement);
+    const delayTime =
+        actualElement === 0 || actualElement === slidesToDisplay.length - 1
+            ? 2500
+            : 5000;
+    /*the first and the last slide are the same, therefore delay time is half of normal */
+
+    useInterval(changeSlide, delayTime, actualElement);
     /* actualElement in useInterval reset the interval when slide is change manually*/
 
     const movePictureHandler = (index) => {
@@ -38,7 +56,10 @@ function Hero() {
             <NavigationButtons
                 data-id={index}
                 key={index}
-                active={actualElement === index}
+                active={
+                    actualElement === index ||
+                    index === actualElement - slidesData.length
+                }
                 onClick={() => movePictureHandler(index)}
             >
                 {paddedPhotoNr}
@@ -46,14 +67,15 @@ function Hero() {
         );
     });
 
-    const slides = slidesData.map((element) => {
-        const { id, title, description, photo } = element;
+    const slides = slidesToDisplay.map((element, index) => {
+        const { title, description, photo } = element;
 
         return (
             <IndividualElement
-                key={id}
+                key={index}
                 howMuchTranslate={actualElement * 100}
                 photo={photo}
+                stopTransition={isTransitionCancel}
             >
                 <Info>
                     <HeadingL>{title}</HeadingL>
@@ -87,7 +109,8 @@ const IndividualElement = styled.div`
     display: flex;
     flex: 0 0 100%;
     transform: ${({ howMuchTranslate }) => `translateX(-${howMuchTranslate}%)`};
-    transition: transform 0.5s linear;
+    transition: ${({ stopTransition }) =>
+        stopTransition ? '' : 'transform 0.5s linear'};
 
     &::after {
         content: '';

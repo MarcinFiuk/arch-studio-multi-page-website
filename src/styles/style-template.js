@@ -1,22 +1,5 @@
 import styled from 'styled-components';
 
-export const HeadingXL = styled.span`
-    display: none;
-
-    @media screen and (min-width: 48rem) {
-        display: block;
-        font-weight: var(--fontWeight-700);
-        font-size: clamp(7.5rem, -1.8rem + 19.3vw, 15.625rem);
-        line-height: 200px;
-        letter-spacing: 10px;
-        color: var(--veryLightGrey);
-    }
-
-    @media screen and (min-width: 64rem) {
-        letter-spacing: -5px;
-    }
-`;
-
 export const HeadingL = styled.h2`
     font-weight: var(--fontWeight-700);
     font-size: clamp(3rem, 0.1rem + 12vw, 6rem);
@@ -67,6 +50,11 @@ export const ButtonTemplate = styled.button`
     line-height: 1.5625rem;
     border: none;
     cursor: pointer;
+    transition: background-color 0.2s ease-in;
+
+    &:hover {
+        background-color: var(--darkGrey);
+    }
 `;
 
 export const WrapperWithoutMobilePadding = styled.section`
@@ -98,6 +86,47 @@ export const PortfolioPhotosWrapper = styled.div`
         gap: var(--gapPortfolioProjectDesktop);
     }
 `;
+
+export const WrapperWithDecorativeText = styled.div`
+    @media screen and (min-width: 48rem) {
+        &:before {
+            content: ${({ content }) => content && `"${content}"`};
+            position: absolute;
+            top: 0;
+            right: ${({ right }) => (right ? right : '')};
+            left: ${({ left }) => (left ? left : '')};
+            transform: translateY(-45%);
+            font-weight: var(--fontWeight-700);
+            font-size: clamp(7.5rem, -1.8rem + 19.3vw, 15.625rem);
+            line-height: 200px;
+            letter-spacing: 10px;
+            color: var(--veryLightGrey);
+        }
+    }
+
+    @media screen and (min-width: 64rem) {
+        &:before {
+            letter-spacing: -5px;
+        }
+    }
+`;
+
+// export const HeadingXL = styled.span`
+//     display: none;
+
+//     @media screen and (min-width: 48rem) {
+//         display: block;
+//         font-weight: var(--fontWeight-700);
+//         font-size: clamp(7.5rem, -1.8rem + 19.3vw, 15.625rem);
+//         line-height: 200px;
+//         letter-spacing: 10px;
+//         color: var(--veryLightGrey);
+//     }
+
+//     @media screen and (min-width: 64rem) {
+//         letter-spacing: -5px;
+//     }
+// `;
 
 export const DecorativeLine = styled.span`
     position: absolute;

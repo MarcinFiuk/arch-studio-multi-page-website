@@ -1,35 +1,37 @@
 import styled from 'styled-components';
 
+import useMatchMedia from './../hooks/useMatchMedia';
 import {
-    HeadingXL,
+    WrapperWithDecorativeText,
     HeadingM,
     Paragraph,
     DecorativeLine,
 } from '../styles/style-template';
 
-function SectionWithOnePhotoDisplayedAtDesktop({
-    photo,
-    alt,
-    decorationText,
-    changeDecorationElement,
-    marginLeft,
-    title,
-    desc1,
-    desc2,
-    desc3,
-    photoWidth,
-    photoHeight,
-}) {
-    const decorationElement = changeDecorationElement ? (
-        <DecorativeLine />
-    ) : (
-        <HeadingXLUpdated>{decorationText}</HeadingXLUpdated>
-    );
+function SectionWithOnePhotoDisplayedAtDesktop(props) {
+    const isMobile = useMatchMedia('(max-width:48rem)');
+    const {
+        photo,
+        alt,
+        decorationText,
+        marginLeft,
+        title,
+        desc1,
+        desc2,
+        desc3,
+        photoWidth,
+        photoHeight,
+    } = props;
 
     return (
         <Wrapper>
-            {decorationElement}
+            {isMobile && <DecorativeLine />}
             <Description marginLeft={marginLeft}>
+                <WrapperWithDecorativeText
+                    content={decorationText}
+                    left='0'
+                    top='-102px'
+                />
                 <HeadingMUpdated as='h2' color='var(--veryDarkBlue)'>
                     {title}
                 </HeadingMUpdated>
@@ -51,14 +53,8 @@ const Wrapper = styled.section`
     position: relative;
 `;
 
-const HeadingXLUpdated = styled(HeadingXL)`
-    position: absolute;
-    left: 0;
-    top: -102px;
-`;
-
 const Description = styled.div`
-    padding: 4.25rem 0 2.5rem;
+    margin: 4.25rem 0 2.5rem;
     flex: 1;
 
     p:last-of-type {
@@ -66,12 +62,12 @@ const Description = styled.div`
     }
 
     @media (min-width: 48rem) {
-        padding: 3rem 0 2rem;
+        margin: 3rem 0 2rem;
     }
     @media (min-width: 64rem) {
+        margin: 4.3125rem 0 0.6875rem;
         margin-left: ${({ marginLeft }) =>
             marginLeft ? 'clamp(3.5rem, -17.4rem + 32.7vw, 12rem)' : '0'};
-        padding: 4.3125rem 0 0.6875rem;
     }
 `;
 

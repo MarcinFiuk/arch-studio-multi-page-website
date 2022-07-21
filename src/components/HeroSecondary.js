@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import {
     WrapperWithoutMobilePadding as Wrapper,
-    HeadingXL,
+    WrapperWithDecorativeText,
     HeadingM,
     Paragraph,
 } from './../styles/style-template';
@@ -35,17 +35,19 @@ function HeroSecondary({
                 </picture>
             </PhotoWrapper>
             <TextWrapper>
-                <HeadingXLStyled>{decorationText}</HeadingXLStyled>
-                <HeadingM as='h2' color='var(--veryDarkBlue)'>
-                    {title}
-                </HeadingM>
-                <Paragraph>{desc}</Paragraph>
+                <WrapperWithDecorativeText content={decorationText} right='0'>
+                    <HeadingM as='h2' color='var(--veryDarkBlue)'>
+                        {title}
+                    </HeadingM>
+                    <Paragraph>{desc}</Paragraph>
+                </WrapperWithDecorativeText>
             </TextWrapper>
         </WrapperStyled>
     );
 }
 
 const WrapperStyled = styled(Wrapper)`
+    position: relative;
     min-height: 534px;
     max-height: 720px;
     overflow: hidden;
@@ -134,13 +136,6 @@ const TextWrapper = styled.div`
             margin-top: 54px;
         }
     }
-`;
-
-const HeadingXLStyled = styled(HeadingXL)`
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateY(-45%);
 `;
 
 export default HeroSecondary;

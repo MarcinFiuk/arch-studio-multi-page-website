@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 import { HeadingS, Paragraph } from '../styles/style-template';
 
-function PortfolioPhoto({ photoData }) {
-    const { id, src, title, subTitle } = photoData;
+function PortfolioPhoto({ photoData, decoration }) {
+    const { src, title, subTitle } = photoData;
     // id will be use for decoration
 
     return (
-        <Wrapper photo={src}>
+        <Wrapper photo={src} decoration={decoration}>
             <TextWrapper>
                 <HeadingS as='h3'>{title}</HeadingS>
                 <Paragraph color='var(--white)'>{subTitle}</Paragraph>
@@ -32,6 +32,20 @@ const Wrapper = styled.div`
         background-image: ${({ photo }) =>
             photo &&
             `linear-gradient(180deg, hsla(0, 0%, 0%, 0) 0.01%, hsla(0, 0%, 0%, 0.5) 100%), url(/assets/portfolio/tablet/${photo})`};
+
+        &::before {
+            content: ${({ decoration }) =>
+                decoration ? `"${decoration}"` : null};
+            position: absolute;
+            top: 0;
+            right: 3%;
+            font-size: 250px;
+            line-height: 200px;
+            font-weight: var(--fontWeight-700);
+            margin-top: 30px;
+            color: var(--white);
+            opacity: 0.5;
+        }
     }
 
     @media (min-width: 64rem) {
@@ -40,6 +54,10 @@ const Wrapper = styled.div`
         background-image: ${({ photo }) =>
             photo &&
             `linear-gradient(180deg, hsla(0, 0%, 0%, 0) 0.01%, hsla(0, 0%, 0%, 0.5) 100%), url(/assets/portfolio/desktop/${photo})`};
+
+        &::before {
+            right: -4.5%;
+        }
     }
 `;
 

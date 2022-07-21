@@ -119,16 +119,22 @@ const ButtonTemplateUpdated = styled(ButtonTemplate)`
     padding: 0;
     display: flex;
     min-width: fit-content;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
 
     span {
         margin-left: 1rem;
-        margin-right: 2rem;
+        margin-right: 1rem;
         transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+        border-color: var(--veryDarkBlue);
     }
 
     &:hover span {
         margin-left: 2rem;
-        margin-right: 1rem;
+        margin-right: 0;
     }
 `;
 

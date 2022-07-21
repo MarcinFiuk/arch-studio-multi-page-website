@@ -16,7 +16,7 @@ function Footer() {
                     <Paragraph
                         as={Link}
                         to='portfolio'
-                        color='var(--mediumGrey)'
+                        // color='var(--mediumGrey)'
                         onClick={() => window.scrollTo(0, 0)}
                     >
                         Portfolio
@@ -97,6 +97,19 @@ const NavStyled = styled.nav`
         flex-direction: row;
         padding-bottom: 0;
         justify-content: space-between;
+    }
+
+    a {
+        color: var(--mediumGrey);
+        font-weight: var(--fontWeight-700);
+
+        &:hover {
+            color: var(--veryDarkBlue);
+        }
+
+        &:last-child {
+            color: var(--white);
+        }
     }
 `;
 

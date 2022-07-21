@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { HeadingM, HeadingS, Paragraph } from './../../styles/style-template';
 import { leadersData } from './../../data/about-page-leaders';
+import IconLinkedin from './../icons/IconLinkedin';
+import IconTwitter from './../icons/IconTwitter';
 
 function Leaders() {
     const thumbnails = leadersData.map((leader) => {
@@ -13,6 +15,14 @@ function Leaders() {
                         src={`/assets/about/desktop/${photo}.jpg`}
                         alt={`${name} miniature`}
                     />
+                    <OverlayWithLinks>
+                        <a href='https://linkedin.com'>
+                            <IconLinkedin />
+                        </a>
+                        <a href='https://twitter.com'>
+                            <IconTwitter />
+                        </a>
+                    </OverlayWithLinks>
                 </PhotoWrapper>
                 <HeadingS as='h3' color='var(--veryDarkBlue)'>
                     {name}
@@ -73,15 +83,36 @@ const Thumbnail = styled.div`
     }
 `;
 
+const OverlayWithLinks = styled.div`
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    transform: translate(100%, -100%);
+    transition: all 0.3s ease-in-out;
+
+    a {
+        color: var(--white);
+    }
+`;
+
 const PhotoWrapper = styled.div`
+    position: relative;
     aspect-ratio: 311/284;
     max-width: 350px;
     overflow: hidden;
     margin-bottom: 1rem;
 
-    img {
+    & > img {
         width: 100%;
         height: 100%;
+    }
+
+    &:hover > div {
+        transform: translate(0, 0);
     }
 `;
 

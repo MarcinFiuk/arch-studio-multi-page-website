@@ -81,6 +81,7 @@ const HeaderStyled = styled.header`
 
     @media (min-width: 48rem) {
         padding-inline: 97px;
+        padding-block: 3.5rem;
     }
 
     @media (min-width: 1280px) {
@@ -172,6 +173,12 @@ const ParagraphAsLink = styled(Paragraph)`
 
     @media (min-width: 48rem) {
         color: var(--mediumGrey);
+        font-weight: var(--fontWeight-700);
+        transition: color 0.15s linear;
+
+        &:hover {
+            color: var(--veryDarkBlue);
+        }
     }
 `;
 

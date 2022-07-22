@@ -5,6 +5,7 @@ import {
     WrapperWithDecorativeText,
     HeadingM,
     Paragraph,
+    DecorativeLine,
 } from './../styles/style-template';
 
 function HeroSecondary({
@@ -35,6 +36,7 @@ function HeroSecondary({
                 </picture>
             </PhotoWrapper>
             <TextWrapper>
+                <DecorativeLineUpdated />
                 <WrapperWithDecorativeText content={decorationText} right='0'>
                     <HeadingM as='h2' color='var(--veryDarkBlue)'>
                         {title}
@@ -107,15 +109,6 @@ const TextWrapper = styled.div`
         padding-top: 162px;
         padding-left: 60px;
 
-        &::before {
-            content: '';
-            display: block;
-            width: 65px;
-            height: 0;
-            transform: translateY(-7300%);
-            border-bottom: 1px solid var(--lightGrey);
-        }
-
         p {
             margin-top: 38px;
         }
@@ -128,13 +121,24 @@ const TextWrapper = styled.div`
         padding-left: clamp(3.75rem, -14.7rem + 28.85vw, 11.25rem);
         margin-left: 0;
 
-        &::before {
-            display: none;
-        }
-
         p {
             margin-top: 54px;
         }
+    }
+`;
+
+const DecorativeLineUpdated = styled(DecorativeLine)`
+    display: none;
+
+    @media (min-width: 48rem) {
+        display: block;
+        left: 60px;
+        top: 88px;
+    }
+
+    @media (min-width: 64rem) {
+        top: 104px;
+        left: clamp(3.75rem, -14.7rem + 28.85vw, 11.25rem);
     }
 `;
 

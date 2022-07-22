@@ -26,12 +26,18 @@ const LinkStyled = styled(Link)`
     gap: 24px;
     padding: 25px 32px 22px 37px;
     transition: background-color 0.2s ease-in;
+
     ${({ custom }) =>
         custom &&
         css`
             grid-area: link;
             width: 100%;
             justify-content: center;
+
+            @media (min-width: 48rem) {
+                width: fit-content;
+                justify-self: end;
+            }
         `}
 
     &:hover {

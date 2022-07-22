@@ -9,7 +9,6 @@ import {
 } from '../styles/style-template';
 
 function SectionWithOnePhotoDisplayedAtDesktop(props) {
-    const isMobile = useMatchMedia('(max-width:48rem)');
     const {
         photo,
         alt,
@@ -21,11 +20,12 @@ function SectionWithOnePhotoDisplayedAtDesktop(props) {
         desc3,
         photoWidth,
         photoHeight,
+        afterWhatHide,
     } = props;
 
     return (
         <Wrapper>
-            {isMobile && <DecorativeLine />}
+            <DecorativeLineUpdated afterWhatHide={afterWhatHide} />
             <Description marginLeft={marginLeft}>
                 <WrapperWithDecorativeText
                     content={decorationText}
@@ -96,6 +96,20 @@ const PhotoWrapper = styled.div`
         width: ${({ width }) => width || '350px'};
         height: ${({ height }) => height || '560px'};
     }
+`;
+
+const DecorativeLineUpdated = styled(DecorativeLine)`
+    @media (min-width: 48rem) {
+        display: ${({ afterWhatHide }) => afterWhatHide === 'mobile' && 'none'};
+    }
+    @media (min-width: 64rem) {
+        display: ${({ afterWhatHide }) => afterWhatHide === 'tablet' && 'none'};
+    }
+    /*props.afterWhatHide can have 2 values:
+    mobile which hide after mobile breakpoint
+    tablet which hide after tablet breakpoint
+
+*/
 `;
 
 export default SectionWithOnePhotoDisplayedAtDesktop;

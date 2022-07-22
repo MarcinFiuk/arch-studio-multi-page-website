@@ -55,6 +55,7 @@ function ContactDetails({ title, offices, getOfficeIndex }) {
 const MainWrapper = styled.section`
     position: relative;
     padding-top: 4.25rem;
+    width: 100%;
 
     @media (min-width: 48rem) {
         padding-top: 3.125rem;
@@ -130,6 +131,7 @@ const ButtonTemplateUpdated = styled(ButtonTemplate)`
 
     &:hover {
         border-color: var(--veryDarkBlue);
+        background-color: initial;
     }
 
     &:hover span {

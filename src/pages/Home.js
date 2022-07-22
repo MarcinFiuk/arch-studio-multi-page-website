@@ -30,6 +30,7 @@ function Home() {
                 intricacies of each project. This allows us to work in
                 harmony the surrounding area to create truly stunning
                 projects that will stand the test of time.'
+                afterWhatHide='mobile'
             />
             <AboutUsSection />
             <FeaturedSection />

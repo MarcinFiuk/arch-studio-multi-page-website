@@ -23,6 +23,7 @@ const LinkStyled = styled(Link)`
     line-height: 1.5625rem;
     width: fit-content;
     display: flex;
+    align-items: center;
     gap: 24px;
     padding: 25px 32px 22px 37px;
     transition: background-color 0.2s ease-in;
@@ -39,6 +40,10 @@ const LinkStyled = styled(Link)`
                 justify-self: end;
             }
         `}
+
+    span {
+        display: block;
+    }
 
     &:hover {
         background-color: var(--darkGrey);

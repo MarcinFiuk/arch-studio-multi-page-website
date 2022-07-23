@@ -7,32 +7,29 @@ import { Paragraph } from './../styles/style-template';
 import { navigationData } from './../data/navigation-data';
 
 function Footer() {
+    // const navigation = navigationData.map((link) => {
+    //     const { id, path, text } = link;
+
+    //     return (
+    //         <li key={id}>
+    //             <Paragraph
+    //                 as={Link}
+    //                 to={path}
+    //                 onClick={() => window.scrollTo(0, 0)}
+    //             >
+    //                 {text}
+    //             </Paragraph>
+    //         </li>
+    //     );
+    // });
+
     return (
         <FooterStyled>
             <Wrapper>
                 <SquareLink to='/' onClick={() => window.scrollTo(0, 0)}>
                     <Logo fill='var(--white)' />
                 </SquareLink>
-                <NavStyled>
-                    <ul>
-                        {navigationData.map((link) => {
-                            const { id, path, text } = link;
-
-                            return (
-                                <li>
-                                    <Paragraph
-                                        key={id}
-                                        as={Link}
-                                        to={path}
-                                        onClick={() => window.scrollTo(0, 0)}
-                                    >
-                                        {text}
-                                    </Paragraph>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </NavStyled>
+                <NavStyled>{/* <ul>{navigation}</ul> */}</NavStyled>
                 <LinkButton
                     to='portfolio'
                     onClick={() => window.scrollTo(0, 0)}

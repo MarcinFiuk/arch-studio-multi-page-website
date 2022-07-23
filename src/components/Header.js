@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import Logo from './icons/Logo';
 import IconHamburger from './icons/IconHamburger';
 import IconClose from './icons/IconClose';
-import { Paragraph } from './../styles/style-template';
-import useMatchMedia from './../hooks/useMatchMedia';
+import { navigationData } from '../data/navigation-data';
+import { Paragraph, VisuallyHidden } from '../styles/style-template';
+import useMatchMedia from '../hooks/useMatchMedia';
 
 function Header({ blockScroll }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -20,55 +21,55 @@ function Header({ blockScroll }) {
     }, [isMobile, blockScroll]);
 
     const toggleNavigationHandler = () => {
-        if (isMobile) {
-            setIsNavOpen((currentState) => {
-                const newState = !currentState;
-                blockScroll(newState);
-                return newState;
-            });
-        }
+        setIsNavOpen((prev) => {
+            const newState = !prev;
+            blockScroll(newState);
+            return newState;
+        });
     };
 
-    const closeNavIfOpen = () => {
-        if (isNavOpen) {
-            toggleNavigationHandler();
-        }
-    };
+    const navigation = navigationData.map((link) => {
+        const { id, path, text } = link;
+
+        return (
+            <li key={id}>
+                <ParagraphAsLink
+                    as={Link}
+                    to={path}
+                    onClick={() => {
+                        setIsNavOpen(false);
+                        blockScroll(false);
+                    }}
+                >
+                    {text}
+                </ParagraphAsLink>
+            </li>
+        );
+    });
 
     return (
         <HeaderStyled>
-            <h1>
-                <Link to='/' onClick={closeNavIfOpen}>
+            <h1
+                onClick={() => {
+                    setIsNavOpen(false);
+                    blockScroll(false);
+                }}
+            >
+                <VisuallyHidden>Arch Logo</VisuallyHidden>
+                <Link to='/'>
                     <Logo />
                 </Link>
             </h1>
+            <ToggleNavButton onClick={toggleNavigationHandler}>
+                <VisuallyHidden>
+                    {isNavOpen ? 'close nav' : 'open nav'}
+                </VisuallyHidden>
+                {isNavOpen ? <IconClose /> : <IconHamburger />}
+            </ToggleNavButton>
             <Overlay isOpen={isNavOpen} />
             <Navigation isOpen={isNavOpen}>
-                <ParagraphAsLink
-                    as={Link}
-                    to='portfolio'
-                    onClick={toggleNavigationHandler}
-                >
-                    Portfolio
-                </ParagraphAsLink>
-                <ParagraphAsLink
-                    as={Link}
-                    to='about'
-                    onClick={toggleNavigationHandler}
-                >
-                    About Us
-                </ParagraphAsLink>
-                <ParagraphAsLink
-                    as={Link}
-                    to='contact'
-                    onClick={toggleNavigationHandler}
-                >
-                    Contact
-                </ParagraphAsLink>
+                <List>{navigation}</List>
             </Navigation>
-            <button onClick={toggleNavigationHandler}>
-                {isNavOpen ? <IconClose /> : <IconHamburger />}
-            </button>
         </HeaderStyled>
     );
 }
@@ -76,109 +77,94 @@ function Header({ blockScroll }) {
 const HeaderStyled = styled.header`
     position: relative;
     display: flex;
-    justify-content: space-between;
-    padding: 2rem;
+    align-items: center;
+    padding-inline: 165px;
+    padding-block: 3.5rem;
 
-    @media (min-width: 48rem) {
+    @media (max-width: 1280px) {
         padding-inline: 97px;
-        padding-block: 3.5rem;
+        justify-content: flex-start;
     }
 
-    @media (min-width: 1280px) {
-        padding-inline: 165px;
+    @media (max-width: 48rem) {
+        justify-content: space-between;
+        padding: 2rem;
     }
+`;
 
-    h1 {
-        flex-shrink: 0;
-    }
+const ToggleNavButton = styled.button`
+    display: none;
 
-    h1 > svg {
-        width: 77px;
-        height: 32px;
-
-        @media (min-width: 48rem) {
-            width: 94px;
-            height: 40px;
-        }
-    }
-
-    button {
+    @media (max-width: 48rem) {
         display: grid;
         place-items: center;
-        flex-grow: 0;
         background-color: transparent;
         border: none;
-
-        @media (min-width: 48rem) {
-            display: none;
-        }
     }
 `;
 
 const Navigation = styled.nav`
-    position: fixed;
-    right: 0;
-    top: 103px;
-    width: 80%;
-    padding-inline: 3rem;
-    padding-block: 2.5rem;
-    background-color: var(--veryLightGrey);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1rem;
-    z-index: 101;
-    ${({ isOpen }) =>
-        isOpen ? 'transform:translateX(0,)' : 'transform:translateX(100%)'};
-    transition: all 0.3s ease-in;
-    transition-delay: ${({ isOpen }) => (isOpen ? '0.2s' : '0')};
-
-    @media (min-width: 48rem) {
-        position: static;
-        background-color: transparent;
-        transform: translateX(0);
-        flex-direction: row;
-        gap: 3.5rem;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0;
-        margin-left: 5rem;
-    }
-
-    @media (min-width: 64rem) {
-        margin-left: 6rem;
+    @media (max-width: 48rem) {
+        position: fixed;
+        inset: 6.5rem 0 auto 10%;
+        background-color: var(--veryLightGrey);
+        z-index: 101;
+        padding-inline: 3rem;
+        padding-block: 2.5rem;
+        transition: all 0.2s ease-in;
+        ${({ isOpen }) =>
+            isOpen ? 'transform:translateX(0)' : 'transform:translateX(100%)'};
+        transition-delay: ${({ isOpen }) => (isOpen ? '0.2s' : '0')};
     }
 `;
 
-const Overlay = styled.div`
-    position: fixed;
-    left: 0;
-    top: 103px;
-    width: calc(100% + 1px);
-    height: 100%;
-    background-color: hsl(0 0% 0% /0.5);
-    z-index: 100;
-    ${({ isOpen }) =>
-        isOpen ? 'transform:translateX(0)' : 'transform:translateX(100%)'};
-    transition: all 0.3s ease-in;
-    transition-delay: ${({ isOpen }) => (isOpen ? '0' : '0.2s')};
+const List = styled.ul`
+    display: flex;
+    list-style: none;
+    padding-left: 94px;
+    gap: 3.5rem;
 
-    @media (min-width: 48rem) {
-        display: none;
+    @media (max-width: 64rem) {
+        padding-left: 78px;
+    }
+
+    @media (max-width: 48rem) {
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 100;
     }
 `;
 
 const ParagraphAsLink = styled(Paragraph)`
-    color: var(--veryDarkBlue);
+    font-weight: var(--fontWeight-700);
+    color: var(--mediumGrey);
+    transition: color 0.15s linear;
 
-    @media (min-width: 48rem) {
-        color: var(--mediumGrey);
-        font-weight: var(--fontWeight-700);
-        transition: color 0.15s linear;
+    &:hover {
+        color: var(--veryDarkBlue);
+    }
 
-        &:hover {
-            color: var(--veryDarkBlue);
-        }
+    @media (max-width: 48rem) {
+        font-size: 2rem;
+        color: var(--veryDarkBlue);
+    }
+`;
+
+const Overlay = styled.div`
+    display: none;
+    @media (max-width: 48rem) {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 6.5rem;
+        width: 100%;
+        height: 100%;
+        background-color: hsl(0 0% 0% /0.5);
+        z-index: 100;
+        ${({ isOpen }) =>
+            isOpen ? 'transform:translateX(0)' : 'transform:translateX(100%)'};
+        transition: all 0.2s ease-in;
+        transition-delay: ${({ isOpen }) => (isOpen ? '0' : '0.2s')};
     }
 `;
 

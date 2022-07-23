@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-import { HeadingM, HeadingS, Paragraph } from './../../styles/style-template';
+import {
+    HeadingM,
+    HeadingS,
+    Paragraph,
+    VisuallyHidden,
+} from './../../styles/style-template';
 import { leadersData } from './../../data/about-page-leaders';
 import IconLinkedin from './../icons/IconLinkedin';
 import IconTwitter from './../icons/IconTwitter';
@@ -17,9 +22,13 @@ function Leaders() {
                     />
                     <OverlayWithLinks>
                         <a href='https://linkedin.com'>
+                            <VisuallyHidden>
+                                {name} Linkedin icon
+                            </VisuallyHidden>
                             <IconLinkedin />
                         </a>
                         <a href='https://twitter.com'>
+                            <VisuallyHidden>{name} twitter icon</VisuallyHidden>
                             <IconTwitter />
                         </a>
                     </OverlayWithLinks>

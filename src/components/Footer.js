@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import LinkButton from './LinkButton';
 import Logo from './icons/Logo';
-import { Paragraph } from './../styles/style-template';
+import { Paragraph, VisuallyHidden } from './../styles/style-template';
 import { navigationData } from './../data/navigation';
 
 function Footer() {
@@ -27,9 +27,10 @@ function Footer() {
         <FooterStyled>
             <Wrapper>
                 <SquareLink to='/' onClick={() => window.scrollTo(0, 0)}>
+                    <VisuallyHidden>Arch Logo</VisuallyHidden>
                     <Logo fill='var(--white)' />
                 </SquareLink>
-                <NavStyled>
+                <NavStyled aria-label='Footer'>
                     <ul>{navigation}</ul>
                 </NavStyled>
                 <LinkButton

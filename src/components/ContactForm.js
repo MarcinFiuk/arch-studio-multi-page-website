@@ -5,6 +5,7 @@ import {
     HeadingM,
     ButtonTemplate,
     Paragraph,
+    VisuallyHidden,
 } from './../styles/style-template';
 import IconArrow from './icons/IconArrow';
 import Error from './Error';
@@ -96,6 +97,7 @@ function ContactForm() {
                     )}
                 </FormChildWrapper>
                 <ButtonSubmit>
+                    <VisuallyHidden>Submit</VisuallyHidden>
                     <IconArrow />
                 </ButtonSubmit>
             </form>

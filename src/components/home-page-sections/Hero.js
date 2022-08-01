@@ -180,6 +180,7 @@ const NavigationButtons = styled(ButtonTemplate)`
         active ? 'var(--veryDarkBlue)' : 'var(--white)'};
     color: ${({ active }) => (active ? 'var(--white)' : 'var(--mediumGrey)')};
     transition: background-color 0.1s ease-in;
+    font-size: 1.25rem;
 
     &:hover {
         background-color: ${({ active }) => !active && 'var(--veryLightGrey)'};

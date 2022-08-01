@@ -59,14 +59,14 @@ function Header({ blockScroll }) {
                     blockScroll(false);
                 }}
             >
-                <VisuallyHidden>Arch Logo</VisuallyHidden>
                 <Link to='/'>
+                    <VisuallyHidden>Arch Logo</VisuallyHidden>
                     <Logo />
                 </Link>
             </h1>
             <ToggleNavButton
                 onClick={toggleNavigationHandler}
-                aria-controls='primary navigation'
+                aria-controls='primary_navigation overlay'
                 aria-expanded={isNavOpen ? 'true' : 'false'}
             >
                 <VisuallyHidden>
@@ -74,8 +74,8 @@ function Header({ blockScroll }) {
                 </VisuallyHidden>
                 {isNavOpen ? <IconClose /> : <IconHamburger />}
             </ToggleNavButton>
-            <Overlay isOpen={isNavOpen} id='primary navigation' />
-            <Navigation isOpen={isNavOpen} id='primary navigation'>
+            <Overlay isOpen={isNavOpen} id='overlay' />
+            <Navigation isOpen={isNavOpen} id='primary_navigation'>
                 <List>{navigation}</List>
             </Navigation>
         </HeaderStyled>
@@ -187,6 +187,7 @@ const ParagraphAsLink = styled(Paragraph)`
     font-weight: var(--fontWeight-700);
     color: var(--mediumGrey);
     transition: color 0.15s linear;
+    font-size: 1.25rem;
 
     &:hover {
         color: var(--veryDarkBlue);

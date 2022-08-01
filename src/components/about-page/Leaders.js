@@ -97,11 +97,14 @@ const OverlayWithLinks = styled.div`
     inset: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     gap: 2rem;
-    background-color: hsla(0, 0%, 0%, 0.5);
-    transform: translate(100%, -100%);
     transition: all 0.3s ease-in-out;
+    background-image: linear-gradient(
+        hsla(0, 0%, 0%, 0),
+        80%,
+        hsla(0, 0%, 0%, 0.5)
+    );
 
     a {
         color: var(--white);
@@ -120,8 +123,16 @@ const PhotoWrapper = styled.div`
         height: 100%;
     }
 
-    &:hover > div {
-        transform: translate(0, 0);
+    @media (hover: hover) {
+        & > div {
+            align-items: center;
+            background-color: hsla(0, 0%, 0%, 0.5);
+            transform: translate(100%, -100%);
+        }
+
+        &:hover > div {
+            transform: translate(0, 0);
+        }
     }
 `;
 

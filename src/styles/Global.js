@@ -22,16 +22,15 @@ body{
     max-width:1440px;
     margin-inline: auto;
     overflow-x:hidden;
-    /* overflow:hidden; */
-
+    position:relative;
     overflow-y:${({ disableHorizontalScroll }) =>
         disableHorizontalScroll ? 'hidden' : ''}
-
 }
 `;
 
 /*
-@media (min-width: 48rem)
+@media(min-width: 48rem)
 @media(min-width: 64rem)
+@media(min-width: 80rem)
 
 */

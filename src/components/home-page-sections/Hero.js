@@ -132,7 +132,7 @@ const IndividualElement = styled.div`
 `;
 
 const Info = styled.div`
-    padding-left: 2rem;
+    padding-inline: 2rem;
     align-self: center;
     z-index: 10;
 

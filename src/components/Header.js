@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -8,10 +8,14 @@ import IconClose from './icons/IconClose';
 import { navigationData } from '../data/navigation-data';
 import { Paragraph, VisuallyHidden } from '../styles/style-template';
 import useMatchMedia from '../hooks/useMatchMedia';
+import { getDecorationText } from './../helpers/getDecorationText';
 
 function Header({ blockScroll }) {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const isMobile = useMatchMedia('(max-width:48rem)');
+    const { pathname } = useLocation();
+
+    const decorativeWord = getDecorationText(pathname).toUpperCase();
 
     useEffect(() => {
         if (!isMobile) {
@@ -48,7 +52,7 @@ function Header({ blockScroll }) {
     });
 
     return (
-        <HeaderStyled>
+        <HeaderStyled word={decorativeWord}>
             <h1
                 onClick={() => {
                     setIsNavOpen(false);
@@ -60,14 +64,18 @@ function Header({ blockScroll }) {
                     <Logo />
                 </Link>
             </h1>
-            <ToggleNavButton onClick={toggleNavigationHandler}>
+            <ToggleNavButton
+                onClick={toggleNavigationHandler}
+                aria-controls='primary navigation'
+                aria-expanded={isNavOpen ? 'true' : 'false'}
+            >
                 <VisuallyHidden>
                     {isNavOpen ? 'close nav' : 'open nav'}
                 </VisuallyHidden>
                 {isNavOpen ? <IconClose /> : <IconHamburger />}
             </ToggleNavButton>
-            <Overlay isOpen={isNavOpen} />
-            <Navigation isOpen={isNavOpen}>
+            <Overlay isOpen={isNavOpen} id='primary navigation' />
+            <Navigation isOpen={isNavOpen} id='primary navigation'>
                 <List>{navigation}</List>
             </Navigation>
         </HeaderStyled>
@@ -81,14 +89,54 @@ const HeaderStyled = styled.header`
     padding-inline: 165px;
     padding-block: 3.5rem;
 
-    @media (max-width: 1280px) {
+    &:before {
+        content: '';
+        position: absolute;
+        left: 77px;
+        top: 0;
+        width: 1px;
+        height: 104px;
+        background-color: var(--lightGrey);
+    }
+
+    &:after {
+        content: ${({ word }) => `"${word}"`};
+        position: absolute;
+        left: 77px;
+        top: 104px;
+        transform: translateX(-50%);
+        color: var(--lightGrey);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        letter-spacing: 18px;
+        padding-top: 48px;
+        font-weight: var(--fontWeight-500);
+        font-size: 18px;
+    }
+
+    @media (max-width: 80rem) {
         padding-inline: 97px;
         justify-content: flex-start;
+
+        &:before {
+            left: 45px;
+        }
+        &:after {
+            left: 45px;
+        }
     }
 
     @media (max-width: 48rem) {
         justify-content: space-between;
-        padding: 2rem;
+        padding-block: 2rem;
+        padding-inline: 32px;
+
+        &:before {
+            display: none;
+        }
+        &:after {
+            display: none;
+        }
     }
 `;
 

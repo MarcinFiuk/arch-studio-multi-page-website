@@ -4,24 +4,24 @@ import styled from 'styled-components';
 import LinkButton from './LinkButton';
 import Logo from './icons/Logo';
 import { Paragraph } from './../styles/style-template';
-import { navigationData } from './../data/navigation-data';
+import { navigationData } from './../data/navigation';
 
 function Footer() {
-    // const navigation = navigationData.map((link) => {
-    //     const { id, path, text } = link;
+    const navigation = navigationData.map((link) => {
+        const { id, path, text } = link;
 
-    //     return (
-    //         <li key={id}>
-    //             <Paragraph
-    //                 as={Link}
-    //                 to={path}
-    //                 onClick={() => window.scrollTo(0, 0)}
-    //             >
-    //                 {text}
-    //             </Paragraph>
-    //         </li>
-    //     );
-    // });
+        return (
+            <li key={id}>
+                <Paragraph
+                    as={Link}
+                    to={path}
+                    onClick={() => window.scrollTo(0, 0)}
+                >
+                    {text}
+                </Paragraph>
+            </li>
+        );
+    });
 
     return (
         <FooterStyled>
@@ -29,7 +29,9 @@ function Footer() {
                 <SquareLink to='/' onClick={() => window.scrollTo(0, 0)}>
                     <Logo fill='var(--white)' />
                 </SquareLink>
-                <NavStyled>{/* <ul>{navigation}</ul> */}</NavStyled>
+                <NavStyled>
+                    <ul>{navigation}</ul>
+                </NavStyled>
                 <LinkButton
                     to='portfolio'
                     onClick={() => window.scrollTo(0, 0)}
@@ -79,13 +81,13 @@ const Wrapper = styled.div`
 
         &:before {
             width: 79%;
-            height: 120px;
+            height: 7.5rem;
         }
     }
 
     @media (min-width: 64rem) {
         &:before {
-            height: 200px;
+            height: 12.5rem;
             width: 88%;
         }
     }
@@ -136,8 +138,8 @@ const SquareLink = styled(Link)`
     background-color: var(--veryDarkBlue);
 
     svg {
-        width: 58;
-        height: 24;
+        width: 58px;
+        height: 24px;
     }
 
     @media (min-width: 64rem) {

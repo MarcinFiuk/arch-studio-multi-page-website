@@ -24,8 +24,8 @@ const LinkStyled = styled(Link)`
     width: fit-content;
     display: flex;
     align-items: center;
-    gap: 24px;
-    padding: 25px 32px 22px 37px;
+    gap: 1.5rem;
+    padding: 1.5rem 2.25rem;
     transition: background-color 0.2s ease-in;
 
     ${({ custom }) =>

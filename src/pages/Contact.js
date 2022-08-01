@@ -3,7 +3,7 @@ import { useState } from 'react';
 import HeroSecondary from './../components/HeroSecondary';
 import ContactDetails from '../components/contact-page/ContactDetails';
 import LeafletMap from './../components/LeafletMap';
-import { contactData } from './../data/contact-page-contact-data';
+import { contactData } from './../data/contact-page-contact';
 import ContactForm from '../components/ContactForm';
 
 function Contact() {

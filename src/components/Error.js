@@ -10,8 +10,8 @@ function Error({ errorMessage }) {
 
 const Wrapper = styled.div`
     position: absolute;
-    left: 0px;
-    bottom: 0px;
+    left: 0;
+    bottom: 0;
     background-color: var(--white);
     transform: translateY(100%);
 

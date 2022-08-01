@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import useMatchMedia from './../hooks/useMatchMedia';
 import {
     WrapperWithDecorativeText,
     HeadingM,

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Logo from './icons/Logo';
 import IconHamburger from './icons/IconHamburger';
 import IconClose from './icons/IconClose';
-import { navigationData } from '../data/navigation-data';
+import { navigationData } from '../data/navigation';
 import { Paragraph, VisuallyHidden } from '../styles/style-template';
 import useMatchMedia from '../hooks/useMatchMedia';
 import { getDecorationText } from './../helpers/getDecorationText';

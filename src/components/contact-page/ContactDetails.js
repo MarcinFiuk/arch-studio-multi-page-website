@@ -39,6 +39,7 @@ function ContactDetails({ title, offices, getOfficeIndex }) {
             </AddressWrapper>
         );
     });
+
     return (
         <MainWrapper>
             <DecorativeLine />

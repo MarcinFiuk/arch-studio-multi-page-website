@@ -40,6 +40,7 @@ function Leaders() {
             </Thumbnail>
         );
     });
+
     return (
         <Wrapper>
             <HeadingM as='h2' color='var(--veryDarkBlue)'>

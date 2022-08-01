@@ -4,7 +4,6 @@ import { HeadingS, Paragraph } from '../styles/style-template';
 
 function PortfolioPhoto({ photoData, decoration }) {
     const { src, title, subTitle } = photoData;
-    // id will be use for decoration
 
     return (
         <Wrapper photo={src} decoration={decoration}>
@@ -39,10 +38,10 @@ const Wrapper = styled.div`
             position: absolute;
             top: 0;
             right: 3%;
-            font-size: 250px;
+            font-size: 15.5rem;
             line-height: 200px;
             font-weight: var(--fontWeight-700);
-            margin-top: 30px;
+            margin-top: 2rem;
             color: var(--white);
             opacity: 0.5;
         }

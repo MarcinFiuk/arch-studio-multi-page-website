@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
 import useInterval from '../../hooks/useInterval';
-import { slidesData } from './../../data/home-page-hero-data';
+import { slidesData } from './../../data/home-page-hero';
 import LinkButton from './../LinkButton';
 import {
     WrapperWithoutMobilePadding as Wrapper,

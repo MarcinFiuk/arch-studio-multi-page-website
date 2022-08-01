@@ -94,23 +94,23 @@ const TextWrapper = styled.div`
     background-color: var(--white);
     bottom: 0;
     left: 0;
-    padding-top: 65px;
+    padding-top: 4rem;
     padding-bottom: 4px;
     padding-left: var(--mainPaddingMobile);
     margin-left: var(--mainPaddingMobile);
     transform: translateX(calc(-1 * var(--mainPaddingMobile)));
 
     p {
-        margin-top: 21px;
+        margin-top: 1.25rem;
     }
 
     @media (min-width: 48rem) {
         transform: translateX(0);
-        padding-top: 162px;
+        padding-top: 10rem;
         padding-left: 60px;
 
         p {
-            margin-top: 38px;
+            margin-top: 2.375rem;
         }
     }
 
@@ -122,7 +122,7 @@ const TextWrapper = styled.div`
         margin-left: 0;
 
         p {
-            margin-top: 54px;
+            margin-top: 3.375rem;
         }
     }
 `;
